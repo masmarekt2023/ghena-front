@@ -11,6 +11,7 @@ import BalanceBadge from "src/component/BalanceBadge";
 
 const useStyles = makeStyles(() => ({
   masBox: {
+    background: "#c99bfbb0 !important",
     borderRadius: "13px",
     padding: "0px",
     "& ul": {

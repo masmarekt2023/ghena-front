@@ -4,34 +4,21 @@ import {
   Container,
   Box,
   Typography,
-  Pagination,  // Corrected the import for Pagination
-} from "@mui/material";  // Use the correct MUI v5 components
+  Pagination,  
+} from "@mui/material";  
 
-import { makeStyles } from '@mui/styles';  // still works, but use `sx` or `styled` if you prefer in MUI v5
-import Itemcard from "src/component/NewItemCard";  // Custom component, assumed
+import { makeStyles } from '@mui/styles';  
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import { UserContext } from "src/context/User";
-import DataLoading from "src/component/DataLoading";  // Custom component
-import NoDataFound from "src/component/NoDataFound";  // Custom component
+import DataLoading from "src/component/DataLoading"; 
+import NoDataFound from "src/component/NoDataFound";  
+import { ButtonwithAnimation } from "../../../component/ui/Button/button";
+import CardMarketplace from "../../../component/ui/Card/CardMarketplace";
 
 
 const useStyles = makeStyles(() => ({
-  pageTitle: {
-    height: "24.5px",
-    textAlign: "center",
-    padding: "20px 0px",
-    marginBottom: 20,
-    fontFamily: "Poppins",
-    fontSize: "21.5px",
-    fontWeight: "700",
-    fontStretch: "normal",
-    fontStyle: "normal",
-    lineHeight: "1.51",
-    letterSpacing: "normal",
-    texAlign: "left",
-    color: "#141518",
-  },
+ 
   container: {
     padding: "50px 0px",
   },
@@ -52,11 +39,14 @@ const useStyles = makeStyles(() => ({
     flexWrap: "inherit",
   },
   gridbox: {
-    "@media(max-width:1280px)": {
-      display: "flex",
-      justifyContent: "center",
-      transition: 'border 0.3s ease',
-    },
+    marginBottom : '50px',
+
+    justifyContent: 'center',
+    // "@media(max-width:1280px)": {
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   transition: 'border 0.3s ease',
+    // },
   },
   gridboxHover: {
     border: '10px solid red', // Red border on hover
@@ -102,17 +92,25 @@ const AllItemsPage = () => {
   }, [auth.userLoggedIn, auth.userData, page]);
 
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container}
+    sx={{
+     
+      background: (theme) => theme.custom.PageBackGround,
+     
+    }}
+    >
       {isLoading ? (
         <DataLoading />
       ) : (
         <section>
           {auth.userLoggedIn && auth.userData?._id && (
             <>
-              <div className={classes.heading}>
-                <Typography variant="h2" className={classes.pageTitle}>ALL Items</Typography>
-              </div>
-              <Container maxWidth="lg">
+              <div style={{ display: "flex", justifyContent: "center",marginBottom  : "50px"}}>
+                               <ButtonwithAnimation  > ALL BUNDLES</ButtonwithAnimation>
+                             
+                             </div>
+                          
+              <Container maxWidth="xl">
                 {allNFTList1.length === 0 ? (
                   <Box align="center" mt={4} mb={5}>
                     <NoDataFound />
@@ -123,21 +121,22 @@ const AllItemsPage = () => {
                 <Grid container spacing={2}>
                   {allNFTList1.map((data, i) => (
                     <Grid
-                      item
-                      key={i}
-                      xs={12}
-                      sm={6}
-                      md={4}
-                      lg={3}
+                    container
+                    item
+                    key={i}
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    mb={{xs: 0,lg:1}}
                       className={classes.gridbox}
                       //onMouseEnter={() => setHoveredIndex(i)}
                       //onMouseLeave={() => setHoveredIndex(null)}
                       //style={hoveredIndex === i ? { border: '10px solid red' } : null}
                     >
-                      <Itemcard
-                        data={data}
-                        index={i}
-                        callbackFn={listAllNft1Handler}
+                     
+                      <CardMarketplace
+                       data={data}
                       />
                     </Grid>
                   ))}

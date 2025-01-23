@@ -8,7 +8,7 @@ import {
 import { makeStyles } from '@mui/styles';
 
 import Profile from "./Profile";
-import BundlesCard from "src/component/NewBundleCard.js";
+import BundlesCard from "src/component/NewBundleCard";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";

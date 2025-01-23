@@ -1,0 +1,57 @@
+.footer .footer-content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+/* استجابة للشاشات اللوحية */
+@media (max-width: 768px) {
+  .footer .footer-content{
+    flex-direction: column !important; /* جعل العناصر عمودية */
+
+  }
+  footer div {
+    flex-direction: column; /* جعل العناصر عمودية */
+    align-items: center !important;
+    justify-content: center;
+  }
+
+  footer h3 {
+    font-size: 18px;
+  }
+
+  footer ul li h2 {
+    font-size: 16px;
+  }
+  .iconContainer{
+    flex-direction: row !important;
+  }
+}
+
+/* استجابة للشاشات الصغيرة (هواتف) */
+@media (max-width: 480px) {
+  footer {
+    padding: 20px 10px;
+  }
+
+  footer img {
+    width: 80px;
+    height: 80px;
+  }
+
+  footer h3 {
+    font-size: 16px;
+  }
+
+  footer ul li h2 {
+    font-size: 14px;
+  }
+
+  .icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+}

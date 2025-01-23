@@ -1,0 +1,36 @@
+.LandingSection{
+    display: flex;
+    flex-direction: column;
+    /* background: linear-gradient(to left, #0008, #640D5F) !important; */
+    box-shadow: 0px 4px 15px rgba(0, 5, 0, 0.5);
+    position: relative;
+    max-width: 100%;
+    /* height: 600px; */
+    border-radius: 50px;
+    color: white;
+    gap:50px;
+   padding-top:20px;
+   margin-top: 100px;
+   /* padding-bottom: 20px; */
+   overflow: hidden;
+  
+  
+  }
+  .HowWorksSection{
+    /* background: linear-gradient(to right, rgba(54, 26, 58, 0.533), #640D5F) !important; */
+
+  }
+.SolutionsSection {
+  /* background: linear-gradient(to left, #0008, #640D5F) !important; */
+
+}
+
+
+  @media (max-width: 480px) {
+    .LandingSection{
+      gap:30px;
+      /* padding-bottom: 10px; */
+      padding-top: 10px;
+    
+    }
+}

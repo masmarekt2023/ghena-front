@@ -1,19 +1,3 @@
-// import React, { useState, useContext, useEffect } from "react";
-// import {
-//   Grid,
-//   Container,
-//   Box,
-//   Typography,
-// } from "@mui/material/";
-// import { makeStyles } from '@mui/styles';
-// import Bundlecard from "src/component/NewBundleCard";
-// import axios from "axios";
-// import Apiconfigs from "src/Apiconfig/Apiconfigs";
-// import { UserContext } from "src/context/User";
-// import DataLoading from "src/component/DataLoading";
-// import NoDataFound from "src/component/NoDataFound";
-// import {Pagination} from "@mui/lab";
-   
 
 import React, { useState, useContext, useEffect } from "react";
 import {
@@ -21,33 +5,21 @@ import {
   Container,
   Box,
   Typography,
-  Pagination, // Moved Pagination to '@mui/material' as per MUI v5
-} from "@mui/material";  // Correct for MUI v5
+  Pagination, 
+} from "@mui/material";  
 
-import { makeStyles } from '@mui/styles'; // `makeStyles` still works, but `styled` or `sx` is recommended in v5
-import Bundlecard from "src/component/NewBundleCard";  // Assuming custom component
+import { makeStyles } from '@mui/styles';
+import Bundlecard from "src/component/NewBundleCard";  
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs"; 
 import { UserContext } from "src/context/User"; 
 import DataLoading from "src/component/DataLoading"; 
 import NoDataFound from "src/component/NoDataFound"; 
+import { ButtonwithAnimation } from "../../../component/ui/Button/button";
+import Cardbundle from "../../../component/ui/Card/Cardbundle";
 
 const useStyles = makeStyles(() => ({
-  pageTitle: {
-    height: "24.5px",
-    textAlign: "center",
-    padding: "20px 0px",
-    marginBottom: 20,
-    fontFamily: "Poppins",
-    fontSize: "21.5px",
-    fontWeight: "700",
-    fontStretch: "normal",
-    fontStyle: "normal",
-    lineHeight: "1.51",
-    letterSpacing: "normal",
-    texAlign: "left",
-    color: "#141518",
-  },
+ 
   container: {
     padding: "50px 0px",
   },
@@ -68,15 +40,24 @@ const useStyles = makeStyles(() => ({
     flexWrap: "inherit",
   },
   gridbox: {
-    "@media(max-width:1280px)": {
-      display: "flex",
-      justifyContent: "center",
-      transition: 'border 0.3s ease',
-    },
- gridboxHover: {
-      border: '10px solid red', // Red border on hover
-    },  
+    justifyContent: 'center',
+    paddingleft: "0",
+
+    
+    // "@media(max-width:1280px)": {
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   transition: 'border 0.3s ease',
+    // },
+
   },
+  gridContainer: {
+
+
+    justifyContent: 'center',
+
+  }
+  
 }));
 
 const AllBundlesPage = () => {
@@ -118,17 +99,28 @@ const AllBundlesPage = () => {
   }, [auth.userLoggedIn, auth.userData, page]);
 
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container}
+    sx={{
+     
+      background: (theme) => theme.custom.PageBackGround,
+     
+    }}
+    >
       {isLoading ? (
         <DataLoading />
       ) : (
-        <section>
+        // <section>
+        <Container maxWidth='xl'>
+          <div style={{ display: "flex", justifyContent: "center",marginBottom  : "50px"}}>
+                  <ButtonwithAnimation  > ALL BUNDLES</ButtonwithAnimation>
+                
+                </div>
+             
+
           {auth.userLoggedIn && auth.userData?._id && (
             <>
-              <div className={classes.heading}>
-                <Typography variant="h2" className={classes.pageTitle}>ALL BUNDLES</Typography>
-              </div>
-              <Container maxWidth="lg">
+             
+              {/* <Container maxWidth="xl"> */}
                 {allNFTList.length === 0 ? (
                   <Box align="center" mt={4} mb={5}>
                     <NoDataFound />
@@ -136,31 +128,51 @@ const AllBundlesPage = () => {
                 ) : (
                   ""
                 )}
-                <Grid container spacing={2}>
+                <Grid 
+                container 
+                
+                
+                className={classes.gridContainer}>
                   {allNFTList.map((data, i) => {
                     return (
                       <Grid
-                        item
-                        key={i}
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        lg={3}
-                        className={classes.gridbox}
-                        //onMouseEnter={() => setHoveredIndex(i)}
-                      //onMouseLeave={() => setHoveredIndex(null)}
-                     // style={hoveredIndex === i ? { border: '10px solid red' } : null}
-                      >
-                        <Bundlecard
-                          data={data}
-                          index={i}
-                          callbackFn={listAllNftHandler}
-                        />
-                      </Grid>
+                      container
+                      item
+                      key={i}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                mb={2}
+
+                      className={classes.gridbox}
+                    >
+                      <Cardbundle data={data} />
+                    </Grid>
+
+                     
+                    //   <Grid
+                    //     item
+                    //     key={i}
+                    //     xs={12}
+                    //     sm={6}
+                    //     md={4}
+                    //     lg={3}
+                    //     className={classes.gridbox}
+                    //     //onMouseEnter={() => setHoveredIndex(i)}
+                    //   //onMouseLeave={() => setHoveredIndex(null)}
+                    //  // style={hoveredIndex === i ? { border: '10px solid red' } : null}
+                    //   >
+                    //     <Bundlecard
+                    //       data={data}
+                    //       index={i}
+                    //       callbackFn={listAllNftHandler}
+                    //     />
+                    //   </Grid>
                     );
                   })}
                 </Grid>
-              </Container>
+              {/* </Container> */}
               <Box mb={2} mt={2} display="flex" justifyContent="center">
                 <Pagination
                     count={pages}
@@ -170,7 +182,9 @@ const AllBundlesPage = () => {
               </Box>
             </>
           )}
-        </section>
+        </Container>
+
+        // </section>
       )}
     </Box>
   );

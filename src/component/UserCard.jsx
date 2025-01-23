@@ -194,6 +194,7 @@ export default function UserDetailsCard(data) {
             height: "40px",
           }}>
             <Box onClick={() => { navigate("/user-profile/" + userCardData.userName) }}>
+          
               {/* Start User Name */}
               <Typography
                 variant="h4"

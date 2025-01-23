@@ -17,57 +17,96 @@ import {
     ListItemAvatar,
     ListItemText,
     ListItemSecondaryAction,
-    Avatar
-} from '@mui/material';  // Correct imports from MUI v5
+    Avatar,
+    Container
+} from '@mui/material';  
+import MenuIcon from "@mui/icons-material/Menu";
+import { makeStyles } from '@mui/styles';  
 
-import { makeStyles } from '@mui/styles';  // Still using makeStyles, consider refactoring to sx or styled()
+import InsertPhotoRoundedIcon from '@mui/icons-material/InsertPhotoRounded';  
+import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined'; 
+import SendIcon from '@mui/icons-material/Send';  
 
-import InsertPhotoRoundedIcon from '@mui/icons-material/InsertPhotoRounded';  // Correct path for icons
-import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';  // Correct path for icons
-import SendIcon from '@mui/icons-material/Send';  // Correct import
+import ImageUploading from "react-images-uploading";  
+import { RemoveScrollBar } from 'react-remove-scroll-bar';  
 
-import ImageUploading from "react-images-uploading";  // Third-party image upload library
-import { RemoveScrollBar } from 'react-remove-scroll-bar';  // Keeps the scrollbar in check when drawer or other components are active
-
-import InputEmoji from "react-input-emoji";  // Third-party emoji input library
-import axios from "axios";  // For HTTP requests
-import Apiconfigs, { baseURL } from "src/Apiconfig/Apiconfigs.js";  // Custom API configs
-import { useNavigate, useParams } from 'react-router-dom';  // Routing
-import { UserContext } from "src/context/User";  // Custom context for managing user data
-import DataLoading from "src/component/DataLoading";  // Custom loading component
-import io from 'socket.io-client';  // Socket client for real-time communications
-import { toast } from "react-toastify";  // For notifications
-import { Virtuoso } from 'react-virtuoso';  // For rendering large lists efficiently
-import { isMobile } from 'react-device-detect';  // For detecting if the device is mobile
-
-
+import InputEmoji from "react-input-emoji";  
+import axios from "axios";  
+import Apiconfigs, { baseURL } from "src/Apiconfig/Apiconfigs.js"; 
+import { useNavigate, useParams } from 'react-router-dom';  
+import { UserContext } from "src/context/User"; 
+import DataLoading from "src/component/DataLoading";  
+import io from 'socket.io-client';  
+import { toast } from "react-toastify";  
+import { Virtuoso } from 'react-virtuoso'; 
+import { isMobile } from 'react-device-detect';  
+import './chat.css'
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 const drawerWidth = 300;
+
 
 const useStyles = makeStyles((theme) => ({
     container: {
+        background: "rgba(17, 25, 40, 0.75)",
         position: 'fixed',
         top: '60px',
+        paddingTop: '10px',
+        right: '60px',
+        bottom: '60px',
         display: "flex",
         justifyContent: 'flex-end',
-        width: '100vw',
-        maxWidth: '100vw',
-        height: 'calc(100vh - 55px)',
+        width: '90%',
+        "@media(max-width:400px)": {
+            width: '100%',
+        right: '0',
+
+          },
+        // maxWidth: '100vw',
+        // height: 'calc(100vh - 55px)',
 
     },
     drawer: {
+        
         flexShrink: 0,
         '& .MuiList-padding': {
-            padding: '0px'
+            padding: '0px',
+            paddingTop: '10px',
+            
+            
         },
         '& .MuiListItemText-secondary': {
             fontSize: "12px"
         }
     },
-    drawerPaper: {
-        top: '60px',
-        width: drawerWidth,
-        background: '#fcfcfc'
-    },
+    drawerContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        height: "100vh", 
+      },
+      drawerPaper: {
+        width: "300px", 
+        position: "absolute", 
+        boxShadow: theme.shadows[3],
+        background: "rgba(17, 25, 40, 0.75) !important",
+       
+        zIndex : "10",
+      },
+      menuButton: {
+        // position: "fixed",
+        // top: '0',
+        height : "20px",
+        left: theme.spacing(4),
+        zIndex: 1300, // أعلى من الـ Drawer
+      },
+    
+    // drawerPaper: {
+    //     top: '60px',
+    //     width: drawerWidth,
+    //     background: '#fcfcfc'
+    // },
     avatar: {
         marginLeft: "5px",
         backgroundColor: '#fff',
@@ -76,19 +115,27 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: "space-between",
-        alignItems: 'stretch',
-        padding: '10px 0px',
+        // alignItems: 'stretch',
+        padding: ' 0px',
         flex: 4,
-        background: '#dadada',
+        paddingLeft : '200px',
+
+        
+       
+        
         width: isMobile ? '100vw' : `calc(100vw - ${drawerWidth}px )`,
         maxWidth: isMobile ? '100vw' : `calc(100vw - ${drawerWidth}px )`,
+        "@media(max-width:768px)": {
+            paddingLeft : '80px',
+
+          },
     },
     msg: {
         alignSelf: 'end',
         width: '100%',
         '& .react-input-emoji--container': {
             order: 2,
-            margin: "0px 10px"
+            // margin: "0px 10px"
         },
         '& .react-emoji-picker--wrapper': {
             width: '100%',
@@ -260,11 +307,12 @@ const ChatBox = function ({chat, socket, visible, isOnline}) {
     return (
         // Start Chat Content
         <Box
+        // className=''
             className={classes.main}
             style={{
                 display: visible ? 'flex' : 'none',
-                paddingBottom: isMobile ? '10px' : '10px',
-                height: isMobile ? '60vh' : '90vh'
+                // paddingBottom: isMobile ? '10px' : '10px',
+                height: '100%'
             }}>
 
             {/* Start User`s avatar */}
@@ -282,7 +330,7 @@ const ChatBox = function ({chat, socket, visible, isOnline}) {
 
             {/* Start Masseges Box  */}
             <Virtuoso
-                style={{flexGrow: 1}}
+                style={{}}
                 ref={virtuosoRef}
                 isScrolling={setIsScrolling}
                 firstItemIndex={firstItemIndex}
@@ -359,7 +407,7 @@ const ChatBox = function ({chat, socket, visible, isOnline}) {
                         return (
                             <>
                                 <Tooltip title="Send media" placement="top">
-                                    <IconButton style={isDragging ? {color: "red"} : null}
+                                    <IconButton style={isDragging ? {color: "red"} :{color: "white"}}
                                                 onClick={onImageUpload}
                                                 {...dragProps}>
                                         <InsertPhotoRoundedIcon/>
@@ -430,6 +478,8 @@ const ChatBox = function ({chat, socket, visible, isOnline}) {
 }
 
 export default function Chat() {
+const Mobile = useMediaQuery(useTheme().breakpoints.down("sm"));
+
     const {chatId} = useParams();
     const navigate = useNavigate();
     const classes = useStyles();
@@ -437,6 +487,11 @@ export default function Chat() {
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [chatList, setChatList] = useState([]);
     const [onlineUsers, setOnlineUsers] = useState([]);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const toggleDrawer = (open) => () => {
+      setDrawerOpen(open);
+    };
 
     const getChatList = async () => axios.get(Apiconfigs.chatList, {
         headers: {
@@ -477,17 +532,49 @@ export default function Chat() {
     }, []);
 
     return (
-        <Box className={classes.container}>
+   <Box className='chat' >
+        <Container maxWidth='xl'>
+       
+       <Box 
+        className={classes.container}
+        >
             <RemoveScrollBar/>
             {/* Start left Section */}
+            
+    {Mobile  && (
+        <IconButton
+        className={classes.menuButton}
+        color="primary"
+        onClick={toggleDrawer(!drawerOpen)}
+      >
+        <MenuIcon />
+      </IconButton>
+    )}
+      
             <Drawer
-                className={classes.drawer}
+                // className={classes.drawer}
                 variant={isMobile ? "persistent" : "permanent"}
                 classes={{
                     paper: classes.drawerPaper,
-                }}
+                  }}
+                  sx={{
+                    '& .MuiDrawer-root': {
+                        position: 'absolute'
+                    },
+                    '& .MuiPaper-root': {
+                        position: 'absolute'
+                    },
+                 
+                    
+                  }}
+                
+                // classes={{
+                //     paper: classes.drawerPaper,
+                // }}
                 anchor="left"
-                open={chatId == 't'}
+                // open={chatId == 't'}
+                open={isMobile ? drawerOpen : chatId === "t"}
+                onClose={toggleDrawer(false)}
             >
 
                 <List>
@@ -508,7 +595,11 @@ export default function Chat() {
                                 `https://avatars.dicebear.com/api/miniavs/${contact?.userName}.svg`;
 
                             return (
-                                <ListItem button key={chat._id} onClick={() => navigate('/chat/' + chat._id)}>
+                                <ListItem button key={chat._id} onClick={() => 
+                                    {
+                                    navigate('/chat/' + chat._id);
+                                    toggleDrawer(false)       ;                      
+                                }}>
                                     <ListItemAvatar>
                                         <Avatar alt={contact?.userName} src={photo} className={classes.avatar}/>
                                     </ListItemAvatar>
@@ -550,5 +641,81 @@ export default function Chat() {
                 })
             }
         </Box>
+       
+       </Container>
+   </Box>
+        // <Box className={classes.container}>
+        //     <RemoveScrollBar/>
+        //     {/* Start left Section */}
+        //     <Drawer
+        //         className={classes.drawer}
+        //         variant={isMobile ? "persistent" : "permanent"}
+        //         classes={{
+        //             paper: classes.drawerPaper,
+        //         }}
+        //         anchor="left"
+        //         open={chatId == 't'}
+        //     >
+
+        //         <List>
+        //             <ListItem>
+        //                 {isConnected ?
+        //                     <Box padding={1} fontSize={12}>🟢 Online users ({onlineUsers.length})</Box> :
+        //                     <Box padding={1} fontSize={12}>⛔ Chat disconnected, retrying ... </Box>
+        //                 }
+        //             </ListItem>
+        //         </List>
+        //         <Divider/>
+        //         {/* Start Usres */}
+        //         <List dense={true}>
+        //             {!chatList ? <DataLoading/> :
+        //                 chatList.length > 0 && chatList.map((chat) => {
+        //                     let contact = chat.users.find(c => c._id != user.userData._id);
+        //                     let photo = contact?.profilePic ? contact?.profilePic :
+        //                         `https://avatars.dicebear.com/api/miniavs/${contact?.userName}.svg`;
+
+        //                     return (
+        //                         <ListItem button key={chat._id} onClick={() => navigate('/chat/' + chat._id)}>
+        //                             <ListItemAvatar>
+        //                                 <Avatar alt={contact?.userName} src={photo} className={classes.avatar}/>
+        //                             </ListItemAvatar>
+        //                             <ListItemText
+        //                                 primary={contact?.userName}
+        //                                 secondary={onlineUsers.includes(contact?._id) ? 'Online' : 'Active recently'}
+        //                             />
+        //                             <ListItemSecondaryAction style={{marginRight: '13px'}}>
+        //                                 <Badge color="error" overlap="rectangular"
+        //                                        badgeContent={user.unreadChats[chat._id]?.length}></Badge>
+        //                             </ListItemSecondaryAction>
+        //                         </ListItem>
+        //                     )
+        //                 })
+        //             }
+        //         </List>
+        //         {/* End Usres */}
+
+        //     </Drawer>
+        //     {/* End left Section */}
+
+        //     {chatId == 't' ?
+        //         <Box className={classes.main}
+        //              style={{justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
+        //             <Typography component="h2" variant="h2" align='center'>
+        //                 Kick start chat now! <br/> Say Hi 👊 to your MAS community
+        //             </Typography>
+        //         </Box> : null}
+
+        //     {!chatList ? <DataLoading/> :
+        //         chatList.length > 0 && chatList.map((chat) => {
+        //             return <ChatBox
+        //                 key={chat._id}
+        //                 chat={chat}
+        //                 socket={socket}
+        //                 visible={(chat._id === chatId)}
+        //                 isOnline={onlineUsers.includes(chat.users.find(c => c._id != user.userData?._id)?._id)}
+        //             />
+        //         })
+        //     }
+        // </Box>
     );
 }

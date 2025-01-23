@@ -12,11 +12,11 @@ import {
   Select,
   Collapse,
 } from '@mui/material';
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "src/context/User";
 import { useNavigate, useLocation } from "react-router-dom";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchIcon from "@mui/icons-material/Search";
 import All from "./All";
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";

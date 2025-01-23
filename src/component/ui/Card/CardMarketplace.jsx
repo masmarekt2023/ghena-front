@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Apiconfigs, { pageURL } from "src/Apiconfig/Apiconfigs";
 import { UserContext } from "src/context/User";
-import "./componentStyle.css";
 import {
   Typography,
   Box,
@@ -11,12 +10,7 @@ import {
   TextField,
   InputAdornment,
   Input,
-  Card,
-  CardHeader,
-  CardMedia,
-  CardContent,
   CardActions,
-  Avatar,
   IconButton,
   Button,
 } from "@mui/material";
@@ -29,54 +23,48 @@ import DialogContent from "@mui/material//DialogContent";
 import DialogContentText from "@mui/material//DialogContentText";
 import { red } from "@mui/material//colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { toast } from "react-toastify";
-import ButtonCircularProgress from "./ButtonCircularProgress";
-
-
-import MenuItem from "@mui/material//MenuItem";
-import Menu from "@mui/material//Menu";
+import Card  from "./Card";
 import ReactPlayer from "react-player";
-import AdditemDialog from "./AddItemDialog";
+import AdditemDialog from "../../AddItemDialog";
 import CloseIcon from '@mui/icons-material/Close';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import bwipjs from 'bwip-js';
-
-
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    maxWidth: 300,
-    maxHeight: 420,
-    margin: 10,
-    textAlign: "left",
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
-    cursor: "pointer",
-  },
-  expand: {
-    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-    border: 0,
-    borderRadius: 3,
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-    color: "white",
-    padding: "0 10px",
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  avatar: {
-    backgroundColor: red[500],
-    cursor: "pointer",
-  },
-}));
-
-export default function ItemCard({ data }) {
+    root: {
+      width: "100%",
+      maxWidth: 300,
+      maxHeight: 420,
+      margin: 10,
+      textAlign: "left",
+    },
+    media: {
+      height: 0,
+      paddingTop: "56.25%", // 16:9
+      cursor: "pointer",
+    },
+    expand: {
+      background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+      border: 0,
+      borderRadius: 3,
+      boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+      color: "white",
+      padding: "0 10px",
+      transform: "rotate(0deg)",
+      marginLeft: "auto",
+      transition: theme.transitions.create("transform", {
+        duration: theme.transitions.duration.shortest,
+      }),
+    },
+    avatar: {
+      backgroundColor: red[500],
+      cursor: "pointer",
+    },
+  }));
+const CardMarketplace = ({data}) => {
+    
+    
   const navigate = useNavigate();
   const classes = useStyles();
   const auth = useContext(UserContext);
@@ -155,22 +143,7 @@ export default function ItemCard({ data }) {
     [itemData.mediaUrl4, itemData.mediaUrl5, itemData.mediaUrl6],
     [itemData.mediaUrl7, itemData.mediaUrl8, itemData.mediaUrl9],
   ];
-  /*const getSubscription = async () => {
-          try {
-            const data = await axios({
-              method: "GET",
-              url: `${Apiconfigs.getSubscription}/${auth.userData._id}/${BundleData._id}`,
-              headers: {
-                token: sessionStorage.getItem("token"),
-              },
-            });
-            if (data.status === 200) {
-              setActiveSubscribe(data.data.result.subscriptionStatus === "ACTIVE");
-            }
-          } catch (err) {
-            console.log(err.message);
-          }
-        };*/
+
 
  const subscribeToBundleHandler = async () => {
           setIsloading(true);
@@ -579,143 +552,96 @@ useEffect(() => {
   const handleCloseParentDialog = () => {
     setOpen2(false); // This assumes `setOpen2` is the state setter for controlling the visibility of the parent dialog
   };
-  
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar
-            aria-label="user"
-            alt={userName}
-            src={profilePic}
-            className={classes.avatar}
-            onClick={() => {
-              navigate("/user-profile/" + userName);
-            }}
-          />
-        }
-        action={
-          <IconButton
-            aria-label="more"
-            onClick={handleClick}
-            aria-haspopup="true"
-            aria-controls="long-menu"
-          >
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={<p style={{ fontWeight: "bold", margin: 0 }}>{userName}</p>}
-        subheader={
-          <p style={{ margin: 0, color: "black" }}>{userSpeciality}</p>
-        }
-      />
-      {isVideo ? (
-        <div
-          style={{ cursor: "pointer", background: '#000'}}
-          onClick={() =>
-            isBuyed || isUseritem
-              ? navigate("/items-details?" + itemData?._id)
-              : handleClickOpen2()
-          }
-        >
-          <ReactPlayer
-            url={itemData.mediaUrl1}
-            muted
-            playing
-            width="100%"
-            height={"166px"}
-          />
-        </div>
-      ) : (
-        <CardMedia
-          className={classes.media}
-          image={itemData.mediaUrl1}
-          title={itemData.itemName}
-          onClick={() =>
-            (isBuyed && activeBuy) || isUseritem
-              ? navigate("/items-details?" + itemData?._id)
-              : handleClickOpen2()
-          }
-        />
-      )}
-      <Menu
-        anchorEl={anchorEl}
-        keepMounted
-        onClose={handleCloseMenu}
-        open={openMenu}
-      >
-        {isUseritem && (
-          <MenuItem
-            key={"Edit"}
-            onClick={() => {
-              setAnchorEl(false);
-              setOpenEdit(true);
-            }}
-            style={{ fontSize: 14 }}
-          >
-            {"Edit"}
-          </MenuItem>
-        )}
-        <MenuItem
-          key={"Copy"}
-          onClick={() => {
-            navigator.clipboard.writeText(
-              `${pageURL}/items-details?${itemData?._id}`
-            );
-            setAnchorEl(false);
-          }}
-          style={{ fontSize: 12 }}
-        >
-          {"Copy"}
-        </MenuItem>
-      </Menu>
-      <CardContent>
-        <Typography
-          variant="h5"
-          component="h5"
-          style={{ color: "#000", fontWeight: "bold" }}
-        >
-          {itemData.itemName}
-        </Typography>
-        <Typography
-          variant="h5"
-          component="h5"
-          style={{ color: "#008000", fontWeight: "bold", marginTop: 5 }}
-        >
-          {"( "}
+    <Box
+  className="card-3"
+  sx={{
+     
+    background: (theme) => theme.custom.CarBackGround,
+   
+  }}
+>
+
+
+
+
+
+       {isVideo ? (
+              <div
+                style={{ cursor: "pointer", background: '#000'}}
+                onClick={() =>
+                  isBuyed || isUseritem
+                    ? navigate("/items-details?" + itemData?._id)
+                    : handleClickOpen2()
+                }
+              >
+                <ReactPlayer
+                  url={itemData.mediaUrl1}
+                  muted
+                  playing
+                  width="100%"
+                  height={"166px"}
+                />
+              </div>
+            ) : (
+                <img src={itemData.mediaUrl1}   onClick={() =>
+                    (isBuyed && activeBuy) || isUseritem
+                      ? navigate("/items-details?" + itemData?._id)
+                      : handleClickOpen2()
+                  } /> 
+              
+            )}
+               <div className="contentContainer">
+
+
+               <Typography
+       variant="h5"
+       component="h5"
+       style={{ color: "white", fontWeight: "bold" }}
+     >
+       {itemData.itemName}
+     </Typography>
+<Typography
+       variant="h5"
+       component="h5"
+       style={{ color: "white", fontWeight: "bold", marginTop: 5,marginBottom :'10px' }}
+     >
+      {"( "}
           {itemData?.donationAmount
             ? itemData?.donationAmount
             : "Any amount"}{" "}
           {" )"}{" "}
           {itemData && itemData.coinName ? itemData.coinName : "MAS"}{" "}
-          {/*" for "*/}
-          {/*{itemData?.duration ? itemData?.duration : "Ever"}*/}
-        </Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          style={{ color: "#000", fontWeight: "bold", marginTop: 5 }}
-        >
-          {/*{itemData?.details}*/}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          aria-label="add to favorites"
-          onClick={() => likeDislikeNft1handler(itemData._id)}
-        >
-          <FavoriteIcon
-            style={isLike ? { color: red[800] } : { color: red[200] }}
-          />
-        </IconButton>
-        <span>{nbLike}</span>
+     </Typography>
+    
+
+{/* info Card */}
+   <Card
+     titel={userName}
+     text={userSpeciality}
+     imgsrc={profilePic}
+     AvatarClick={() => {
+        navigate("/user-profile/" + userName);
+      }}
+   />
+
+<div
+            className="buttons"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "5px",
+            }}
+          >
+
+<CardActions disableSpacing>
+       
         {auth.userData &&
           auth.userLoggedIn &&
           auth.userData._id !== userId &&
           isBuyed && (
             <Button
-              className={classes.expand}
+              className="primary"
               disabled={isBuyed && activeBuy}
               onClick={() => (activeBuy ? {} : handleClickOpen2())}
             >
@@ -723,22 +649,32 @@ useEffect(() => {
             </Button>
           )}
         {auth?.userData?._id !== userId && !isBuyed && (
-          <Button className={classes.expand} onClick={handleClickOpen2}>
+          <Button className="primary" onClick={handleClickOpen2}>
             Details
           </Button>
         )}
         {auth.userData && auth.userLoggedIn && auth.userData._id === userId && (
           <Button
-            className={classes.expand}
+            className="primary"
             onClick={() => navigate("/items-details?" + itemData?._id)}
           >
             View
           </Button>
         )}
+         <div
+         style={{display : 'flex' ,margin:'10px' }}
+          aria-label="add to favorites"
+          onClick={() => likeDislikeNft1handler(itemData._id)}
+        >
+          <FavoriteIcon
+           style={isLike ? {color: 'white'  } : { color:'#ffffff6e'  }}
+          />
+          <span style={{color: 'white',marginLeft:'10px'} }>{nbLike}</span>
+        </div>
+        
       </CardActions>
-
-      {/* edit */}
-      <Dialog
+ {/* edit */}
+ <Dialog
         open={open}
         fullWidth="sm"
         maxWidth="sm"
@@ -1075,6 +1011,22 @@ useEffect(() => {
         show={openEdit}
         itemData={data}
       />
-    </Card>
-  );
+
+
+            </div>
+
+ 
+
+</div>
+
+
+    
+
+ 
+
+
+</Box>
+  )
 }
+
+export default CardMarketplace

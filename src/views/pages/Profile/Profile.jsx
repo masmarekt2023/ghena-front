@@ -76,10 +76,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-} from "@mui/material"; // Updated to MUI v5 import
-
-import { makeStyles } from "@mui/styles"; // Continue using makeStyles (unless using @mui/system)
-
+} from "@mui/material"; 
+import { makeStyles } from "@mui/styles"; 
 import { UserContext } from "src/context/User";
 import { FiCopy } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
@@ -92,7 +90,7 @@ import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import ButtonCircularProgress from "src/component/ButtonCircularProgress";
 import DataLoading from "src/component/DataLoading";
-import BalanceBox from "src/component/BalanceBox";
+import BalanceBox from "src/component/ui/BalanceBox";
 import { sortAddress } from "src/utils";
 import { tokensDetails, websiteName } from "src/constants";
 import {
@@ -104,9 +102,7 @@ import {
 import NoDataFound from "src/component/NoDataFound";
 import { toast } from "react-toastify";
 import { VerifyOtp } from "src/component/Modals/VerifyOtp";
-
-// Import icons from MUI v5 icons library
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Updated from material-ui/icons
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; 
 
 
 const useStyles = makeStyles((theme) => ({

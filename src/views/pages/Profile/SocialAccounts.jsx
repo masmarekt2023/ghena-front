@@ -91,7 +91,7 @@ export default function SocialAccounts() {
 
   return (
     <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} style={{ background:"#c695da61" }}>
         <Typography>Social Accounts</Typography>
       </AccordionSummary>
       <AccordionDetails>

@@ -11,12 +11,13 @@ import {
   DialogActions, // Correct MUI import
   Dialog, 
   DialogContent,
+  major,
 } from '@mui/material';  // Correct MUI v5 imports
 
 import { makeStyles } from '@mui/styles';  // Styling solution, still compatible with MUI v5
 
 import { tokensDetails } from "src/constants";  // Custom token constants
-import BalanceBox from "src/component/BalanceBox";  // Custom BalanceBox component
+import BalanceBox from "src/component/ui/BalanceBox";  // Custom BalanceBox component
 import { UserContext } from "src/context/User";  // Custom context for user data
 import { sortAddress } from "src/utils";  // Utility function for sorting addresses
 
@@ -720,7 +721,8 @@ const ConnectWallet = () => {
         onClick={handleDisconnect}
         variant="contained"
         color="secondary"
-        className={classes.button}
+        className="primaryButton"
+
       >
         {sortAddress(account)}
       </Button>
@@ -728,7 +730,8 @@ const ConnectWallet = () => {
         onClick={handleOpenChargeDialog}
         variant="contained"
         color="secondary"
-        className={classes.button}
+        className="primaryButton"
+
       >
         Charge Your Account with USDT
       </Button>
@@ -740,10 +743,11 @@ const ConnectWallet = () => {
   ) : (
           <>
             <Button
+            className="primaryButton"
               onClick={() => setShowConnectDialog(true)}
               variant="contained"
               color="secondary"
-              className={classes.button}
+             
             >
               Connect Wallet
               
@@ -755,7 +759,10 @@ const ConnectWallet = () => {
                   onClick={() => handleConnect('Metamask')}
                   variant="contained"
                   color="secondary"
-                  className={classes.button}
+                  className="primaryButton"
+                  sx={{ margin: "10px" }} 
+                  
+
                 >
                   Metamask
                 </Button>
@@ -763,7 +770,10 @@ const ConnectWallet = () => {
                   onClick={() => handleConnect('TrustWallet')}
                   variant="contained"
                   color="secondary"
-                  className={classes.button}
+                  className="primaryButton"
+                  sx={{ margin: "10px" }} 
+
+
                 >
                   Trust Wallet
                 </Button>
@@ -771,7 +781,9 @@ const ConnectWallet = () => {
                   onClick={() => handleConnect('Vantoum')}
                   variant="contained"
                   color="secondary"
-                  className={classes.button}
+                  className="primaryButton"
+                  sx={{ margin: "10px" }} 
+
                 >
                   Vantoum
                 </Button>
@@ -779,7 +791,9 @@ const ConnectWallet = () => {
                   onClick={() => setShowConnectDialog(false)}
                   variant="contained"
                   color="secondary"
-                  className={classes.button}
+                  className="primaryButton"
+                  sx={{ margin: "10px" }} 
+
                 >
                   Cancel
                 </Button>

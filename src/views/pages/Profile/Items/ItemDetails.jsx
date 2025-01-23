@@ -16,7 +16,7 @@ import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import Loader from "src/component/Loader";
 import { toast } from "react-toastify";
 import ReactPlayer from "react-player";
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 
 const useStyles = makeStyles((theme) => ({
   root: { padding: "70px 0px" },

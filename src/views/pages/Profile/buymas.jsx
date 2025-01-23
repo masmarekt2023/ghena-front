@@ -5,7 +5,7 @@ import axios from 'axios';  // For making API requests
 import Apiconfigs from "src/Apiconfig/Apiconfigs";  // Custom API config file
 import { UserContext } from "src/context/User";  // Custom context for user
 import { tokensDetails } from "src/constants";  // Constants for tokens
-import BalanceBox from "src/component/BalanceBox";  // Custom component for balance display
+import BalanceBox from "src/component/ui/BalanceBox";  // Custom component for balance display
 
 import {
   Box,
@@ -358,6 +358,7 @@ useEffect(() => {
       <Box className={classes.inputContainer}>
         <Typography className={classes.label} variant="subtitle1">Enter USDT Amount:</Typography>
         <TextField
+        variant="standard"
           className={classes.textBox}
           type="number"
           value={usdtAmount}
@@ -368,6 +369,7 @@ useEffect(() => {
       <Box className={classes.inputContainer}>
         <Typography className={classes.label} variant="subtitle1">Mas Amount (0.1 of USDT):</Typography>
         <TextField
+        variant="standard"
           className={classes.textBox}
           type="text"
           value={masAmount}
@@ -377,9 +379,9 @@ useEffect(() => {
       <br />
       <Box className={classes.buttonContainer}>
         <Button
-          className={classes.button}
+          className="primaryButton"
+          fullWidth
           variant="contained"
-          color="secondary"
           onClick={buymas}
           disabled={!web3 || !contract || loading}
         >

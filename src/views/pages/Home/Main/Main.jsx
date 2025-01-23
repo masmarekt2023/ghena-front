@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import AuctionPage from "./AuctionPage";
-import BannerSection from "./BannerSection";
+import AuctionPage from "../AuctionPage";
+import BannerSection from "../BannerSection";
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
-import LandingSection from "src/views/pages/Home/LandingSection";
+import LandingSection from "src/views/pages/Home/LandingSection/LandingSection";
+import './Main.css'
+import { Box } from "@mui/material";
 
 export default function Main() {
   const [state, setState] = useState({
@@ -58,7 +60,7 @@ export default function Main() {
       console.log(error);
     }
   };
-
+console.log(landingSections)
   async function getStaticSections() {
     try {
       const res = await axios({
@@ -84,7 +86,14 @@ export default function Main() {
     console.log(bannerDuration);
   }, [bannerDuration]);
   return (
-    <>
+    <Box className="home" 
+   
+    sx={{
+     
+      background: (theme) => theme.custom.PageBackGround,
+     
+    }}
+    >
       {bannerDetails.length > 0 && (
         <BannerSection
           bannerDetails={bannerDetails}
@@ -95,6 +104,6 @@ export default function Main() {
         <LandingSection key={item._id} item={item} index={index} />
       ))}
       <AuctionPage staticSections={staticSections}/>
-    </>
+    </Box>
   );
 }

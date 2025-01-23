@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ItemCard from "src/component/NewItemCard";
+// import ItemCard from "src/component/NewItemCard";
 import UserDetailsCard from "src/component/UserCard";
 import axios from "axios";
 import Apiconfigs from "../../../Apiconfig/Apiconfigs";
@@ -95,7 +95,7 @@ export default function purchases() {
             {purchases.map((data, i) => {
               return (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-                  <ItemCard data={data.nft1Id} key={i} index={i} />
+                  {/* <ItemCard data={data.nft1Id} key={i} index={i} /> */}
                 </Grid>
               );
             })}

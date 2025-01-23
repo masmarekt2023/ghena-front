@@ -1,25 +1,19 @@
 import React from 'react'
 import { makeStyles } from '@mui/styles';
 
-import Footer from './Footer'
+import Footer from './Footer/Footer'
 import TopBar from './TopBar/TopBar'
 
-const useStyles = makeStyles(() => ({
-  root: {
-    backgroundColor: '#fff',
-  },
-  childHeight: {
-    minHeight: '410px',
-  },
-}))
 
 const MainLayout = ({ children }) => {
-  const classes = useStyles()
+  
   return (
-    <div className={classes.root}>
+    <div >
       <TopBar />
-      <div className={classes.childHeight}>{children}</div>
+      <div >{children}</div>
       <Footer />
+    
+
     </div>
   )
 }

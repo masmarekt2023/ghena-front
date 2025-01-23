@@ -22,7 +22,7 @@ export const PrimaryButton = styled(MuiButton)(({ pill }) => ({
 
   
 
-export const withAnimation=() => {
+export const ButtonwithAnimation=({children}) => {
 return (
   <div className={styles.btnBlock}>
         

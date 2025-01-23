@@ -10,16 +10,17 @@ import {
   Paper,
   InputAdornment,
   Input,
-} from '@mui/material';  // Import from '@mui/material', not '@mui/material/styles'
+  Container,
+} from '@mui/material';  
 
 import { makeStyles } from '@mui/styles';
 
 import NoDataFound from "src/component/NoDataFound";
-import SearchIcon from "@mui/icons-material/Search";  // Update to '@mui/icons-material'
+import SearchIcon from "@mui/icons-material/Search";  
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import axios from "axios";
 import Loader from "src/component/Loader";
-import { Pagination } from "@mui/material";  // Update to '@mui/material'
+import { Pagination } from "@mui/material";  
 import ChildTableUser from "../../../component/userRow";
 import { UserContext } from "src/context/User";
 import { isMobile } from 'react-device-detect';
@@ -50,8 +51,9 @@ const useStyles = makeStyles(() => ({
     },
   },
   paddingContainer: {
-    padding: "0px 30px",
-    marginTop: "-30px",
+    padding: "30px 30px",
+    // marginTop: "-30px",
+    
   },
   table: {
     minWidth: 320,
@@ -158,13 +160,16 @@ export default function UsersList() {
   }, [page, filterData]);
 
   return (
-    <Box className={classes.paddingContainer}>
+    <Container maxWidth='xl'>
+<Box className={classes.paddingContainer}>
       <Box className={classes.LoginBox} mb={5}>
         {/* Start Title */}
-        <Box className={classes.masBoxFlex}>
+        <Box className={classes.masBoxFlex}
+        
+        >
           {/* {isMobile ? "" : <Typography variant="h6">Users</Typography>} */}
           <Box variant="h6" style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-            <span style={{ fontSize: "22px", fontWeight: "700" }}>
+            <span style={{  fontSize: "2rem",fontWeight: "700",color: "#640D5F" }}>
               Users
             </span>
             <Input
@@ -222,24 +227,24 @@ export default function UsersList() {
 
             {/* Start Head */}
             <TableHead
-              style={{
-                background: "linear-gradient(180deg, #c04848 0%, #480048 100%)",
-              }}
+                       style={{
+                        background: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))",
+                      }}
             >
               <TableRow>
-                <TableCell className={classes.ranking} align="Center" style={{ color: "white", padding: "1px", width: "10px!important" }}>
+                <TableCell className={classes.ranking} align="Center" style={{ color: "white", padding: "1px", width: "10px!important",textAlign:"center" }}>
                   Img
                 </TableCell>
-                <TableCell className={classes.profile} align="Center" style={{ color: "white" }}>
+                <TableCell className={classes.profile} align="Center" style={{ color: "white",textAlign:"center" }}>
                   Name
                 </TableCell>
-                <TableCell align="Center" style={{ color: "white" }}>
+                <TableCell align="Center" style={{ color: "white",textAlign:"center" }}>
                   Action
                 </TableCell>
-                <TableCell align="Center" style={{ color: "white", fontSize: "10px" }}>
+                <TableCell align="Center" style={{ color: "white", fontSize: "10px" ,textAlign:"center"}}>
                   Wallet Address
                 </TableCell>
-                <TableCell align="Center" style={{ color: "white" }}>
+                <TableCell align="Center" style={{ color: "white" ,textAlign:"center"}}>
                   Sepeciality
                 </TableCell>
                 {/* <TableCell align="Center" style={{ color: "white" }}>
@@ -281,5 +286,7 @@ export default function UsersList() {
         </Box>
       </Box>
     </Box>
+
+</ Container>
   );
 }

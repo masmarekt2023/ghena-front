@@ -7,6 +7,24 @@ import typography from "./typography";
 const baseOptions = {
   typography,
   overrides: {
+    MuiButton: {
+      root: {
+        "&.primaryButton": {
+          background: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))",
+          border: "none",
+          padding: "10px 15px",
+          borderRadius: "15px",
+          cursor: "pointer",
+          width: "auto",
+          transition: "background-color 0.3s",
+          color: "white",
+          minHeight: "50px",
+          width: "150px",
+          "&:hover": {
+            background: "linear-gradient(to bottom right, #640D5F, rgb(8, 8, 56))",
+          },
+        },
+      },
     MuiFormControlLabet: {
       root: {
         marginRight: "0 !important",
@@ -158,7 +176,9 @@ const baseOptions = {
       },
     },
   },
-};
+}
+}
+
 
 const themesOptions = {
   typography: {
@@ -207,9 +227,96 @@ const themesOptions = {
     },
   },
 };
+const Theme = {
+  palette: {
+    // primary: {
+    //   main: "#640D5F",
+    //   contrastText: "#fff",
+    // },
+    // secondary: {
+    //   main: "#C771EE",
+    // },
+  },
+  // تعريف المتغيرات داخل theme
+  custom: {
+    gradientButton: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))",
+    hoverGradientButton: "linear-gradient(to bottom right, #640D5F, #080838)",
+    PageBackGround :"linear-gradient(to bottom left, #640D5F, black)",
+    CarBackGround :"linear-gradient(to top right, #640D5F, rgb(1, 15, 78))",
+    BoxBackGround :"linear-gradient(to right, rgba(54, 26, 58, 0.533), #640D5F)",
+    BoxBackGroundReseve :"linear-gradient(to left, #0008, #640D5F)",
+
+
+
+  },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "&.auth-input": { // تخصيص حقول الإدخال التي تحتوي على فئة auth-input فقط
+            "& .MuiInputBase-input": {
+              color: "white", // لون النص
+            },
+            "& .MuiInputLabel-root": {
+              color: "white", // لون التسمية
+            },
+            "& .MuiInputLabel-root.Mui-focused": {
+              color: "white", // لون التسمية عند التركيز
+            },
+            "& .MuiInput-underline:before": {
+              borderBottomColor: "white", // لون الحدود قبل التركيز
+            },
+            "& .MuiInput-underline:hover:before": {
+              borderBottomColor: "white", // لون الحدود عند التمرير
+            },
+            "& .MuiInput-underline:after": {
+              borderBottomColor: "white", // لون الحدود عند التركيز
+            },
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: (props) => ({
+          "&.primaryButton": {
+            padding: "10px 15px",
+            borderRadius: "15px",
+            cursor: "pointer",
+            transition: "all 0.3s",
+            color: "white",
+            minWidth : "100px",
+            minHeight: "50px",
+            background: props.theme.custom.gradientButton,
+            "&:hover": {
+              background: props.theme.custom.hoverGradientButton,
+            },
+          },
+        }),
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: "white", 
+          // color: "#ffffff", 
+          borderRadius: "12px", 
+          padding: "20px", 
+          boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.2)", 
+        },
+        root: {
+          "& .MuiBackdrop-root": {
+            backgroundColor: "rgba(0, 0, 0, 0.7)", 
+          },
+        },
+      },
+    },
+
+  }
+  }
 
 export const CreateTheme = (config = {}) => {
-  let theme = createTheme(_.merge({}, baseOptions, themesOptions));
+  let theme = createTheme(_.merge({}, baseOptions, themesOptions,Theme));
 
   if (config.responsiveFontSizes) {
     theme = responsiveFontSizes();

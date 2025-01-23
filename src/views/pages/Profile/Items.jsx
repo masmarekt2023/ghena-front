@@ -25,7 +25,7 @@ import axios from "axios";
 import ButtonCircularProgress from "src/component/ButtonCircularProgress";
 import NoDataFound from "src/component/NoDataFound";
 import { toast } from "react-toastify";
-import ItemCard from "src/component/NewItemCard";
+// import ItemCard from "src/component/NewItemCard";
 import { tokensDetails } from "src/constants";
 import ReactPlayer from "react-player";
 import AdditemDialog from "../../../component/AddItemDialog";
@@ -228,7 +228,7 @@ export default function items() {
           {itemList.map((data, i) => {
             return (
               <Grid item key={i} lg={3} md={4} sm={6} xm={12}>
-                <ItemCard data={data} index={i} isDays={true} />
+                {/* <ItemCard data={data} index={i} isDays={true} /> */}
               </Grid>
             );
           })}

@@ -14,35 +14,19 @@ import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import DataLoading from "src/component/DataLoading";
 import UserDetailsCard from "src/component/UserCard";
 import NoDataFound from "src/component/NoDataFound";  // Custom component
+import { ButtonwithAnimation } from "../../../component/ui/Button/button";
+import CardCreators from "../../../component/ui/Card/CardCreators";
 
 const useStyles = makeStyles(() => ({
 
   container: {
-    minHeight: "661px",
-    "& h6": {
-      fontWeight: "bold",
-      marginBottom: "10px",
-      "& span": {
-        fontWeight: "300",
-      },
-    },
+    padding: "50px 0px",
+
+
   },
-  pageTitle: {
-    height: "24.5px",
-    textAlign: "center",
-    padding: "20px 0px",
-    fontFamily: "Poppins",
-    fontSize: "21.5px",
-    fontWeight: "700",
-    fontStretch: "normal",
-    fontStyle: "normal",
-    lineHeight: "1.51",
-    letterSpacing: "normal",
-    texAlign: "left",
-    color: "#141518",
-  },
+ 
   divider: {
-    padding: "20px 10px",
+    // padding: "20px 10px",
   },
   TokenBox: {
     border: "solid 0.5px #e5e3dd",
@@ -50,11 +34,25 @@ const useStyles = makeStyles(() => ({
   },
   heading: {
     textAlign: "center",
-    padding: '33px'
+    // padding: '33px'
   },
   userGridContainer:{
-      justifyContent: 'center'
-  }
+      justifyContent: 'center',
+   
+
+  },
+  gridbox: {
+    justifyContent: 'center',
+    paddingleft: "0",
+
+    
+    // "@media(max-width:1280px)": {
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   transition: 'border 0.3s ease',
+    // },
+
+  },
 }));
 
 export default function Login() {
@@ -107,14 +105,24 @@ export default function Login() {
   }, [search, page]);
 
   return (
-    <Box className={classes.container} mb={5}>
-      <div className={classes.heading}>
-        <Typography variant="h2" className={classes.pageTitle}>Creators</Typography>
-      </div>
+    <Box className={classes.container}
+    sx={{
+     
+      background: (theme) => theme.custom.PageBackGround,
+     
+    }}
+    >
+       
+
+    
       {isLoading ? (
         <DataLoading />
       ) : (
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
+            <div style={{ display: "flex", justifyContent: "center",marginBottom  : "50px"}}>
+                        <ButtonwithAnimation  > Creators</ButtonwithAnimation>
+                      
+                      </div>
           {userListToDisplay.length === 0 ? (
             <Box align="center" mt={4} mb={5}>
               <NoDataFound />
@@ -122,10 +130,31 @@ export default function Login() {
           ) : (
             ""
           )}
-          <Grid container className={classes.userGridContainer}>
+          <Grid 
+           container
+           
+          
+          className={classes.userGridContainer}>
+        
             {userListToDisplay.map((data, i) => {
               return (
-                <UserDetailsCard data={data} key={i} callbackFn={getuser} />
+                <Grid  
+                container
+                item
+                key={i}
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                className={classes.gridbox}
+                mb={2}
+
+
+               >
+<CardCreators data={data} />
+                </Grid>
+                
+                
               );
             })}
           </Grid>

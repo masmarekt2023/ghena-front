@@ -7,13 +7,19 @@ export const routes = [
   {
     path: "/",
     layout: HomeLayout,
-    element: lazy(() => import("src/views/pages/Home/Main")),
+    element: lazy(() => import("src/views/pages/Home/Main/Main")),
   },
 
   {
     path: "/login",
     element: lazy(() =>
-      import("src/views/pages/UserSignUp/login")
+      import("src/views/pages/UserSignUp/login/login")
+    ),
+  },
+  {
+    path: "/Forget",
+    element: lazy(() =>
+      import("src/views/pages/UserSignUp/forgetPassword/forgetPassword")
     ),
   },
   {
@@ -25,7 +31,7 @@ export const routes = [
   {
     path: "/create-account",
     element: lazy(() =>
-      import("src/views/pages/UserSignUp/register")
+      import("src/views/pages/UserSignUp/register/register")
     ),
   },
 
@@ -47,7 +53,7 @@ export const routes = [
 
   {
     path: "/chat/:chatId",
-    layout: HomeLayout,
+    // layout: HomeLayout,
     guard: true,
     element: lazy(() => import("src/views/pages/Chat/index")),
   },
@@ -98,14 +104,14 @@ export const routes = [
     path: "/bundles",
     layout: HomeLayout,
     guard: true,
-    element: lazy(() => import("src/views/pages/AllBundles")),
+    element: lazy(() => import("src/views/pages/AllBundles/AllBundles")),
   },
 
   {
     path: "/items",
     layout: HomeLayout,
     guard: true,
-    element: lazy(() => import("src/views/pages/Allitems")),
+    element: lazy(() => import("src/views/pages/Allitems/Allitems")),
   },
   {
     path: "/bundles-details",

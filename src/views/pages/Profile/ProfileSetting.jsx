@@ -1,46 +1,4 @@
-// import React, { useState, useContext, useEffect } from "react";
-// import {
-//   Box,
-//   Container,
-//   Grid,
-//   Button,
-//   TextField,
-//   InputAdornment
-// } from '@mui/material';
-// import { makeStyles } from '@mui/styles';
 
-// import {
-//   Alert,
-//   AlertTitle
-// } from "@material-ui/lab";
-// import { green, red } from '@material-ui/core/colors';
-// import "./style.css";
-// import Tooltip from '@material-ui/core/Tooltip';
-// import { Link } from "react-router-dom";
-// import axios from "axios";
-// import Apiconfigs from "src/Apiconfig/Apiconfigs";
-// import { UserContext } from "src/context/User";
-// import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
-// import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-// import ButtonCircularProgress from "src/component/ButtonCircularProgress";
-// import { FiCopy, FiEdit } from "react-icons/fi";
-// import { toast } from "react-toastify";
-// import { CopyToClipboard } from "react-copy-to-clipboard";
-// import SocialAccounts from "./SocialAccounts";
-// import { VerifyOtp } from "src/component/Modals/VerifyOtp"
-// import { useNavigate } from "react-router-dom";
-// import EditIcon from '@material-ui/icons/Edit';
-// import { isMobile } from 'react-device-detect';
-// import { IconButton } from '@material-ui/core';
-// import SaveIcon from '@material-ui/icons/Save';
-// import CancelIcon from '@material-ui/icons/Cancel';
-// import Dialog from "@material-ui/core/Dialog";
-// import DialogContent from "@material-ui/core/DialogContent";
-// import DialogActions from '@material-ui/core/DialogActions';
-// import DialogContentText from '@material-ui/core/DialogContentText';
-// import DialogTitle from '@material-ui/core/DialogTitle';
-// //import KYCForm from './KYCForm'; // Adjust the path accordingly
-// import { useRef } from 'react';
 import React, { useState, useContext, useEffect, useRef } from "react";
 import {
   Box,
@@ -56,47 +14,56 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle
-} from '@mui/material'; // Updated to MUI v5 imports
-
-import { makeStyles } from '@mui/styles'; // If you're still using makeStyles (not preferred in v5)
+} from '@mui/material'; 
+import { makeStyles } from '@mui/styles'; 
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import { UserContext } from "src/context/User";
-import { FiCopy, FiEdit } from "react-icons/fi"; // No change needed
+import { FiCopy, FiEdit } from "react-icons/fi"; 
 import { toast } from "react-toastify"; 
 import { CopyToClipboard } from "react-copy-to-clipboard"; 
 import { CheckCircleOutline, ErrorOutline, Edit, Save, Cancel } from '@mui/icons-material'; // MUI v5 Icons (Updated)
 import SocialAccounts from "./SocialAccounts"; 
 import { VerifyOtp } from "src/component/Modals/VerifyOtp";
 import { isMobile } from 'react-device-detect';
-import { Alert, AlertTitle } from '@mui/material'; // Moving Alert from MUI v5
-import { green, red } from '@mui/material/colors'; // Updated MUI color imports
-import "./style.css"; // Assuming no changes needed to your style.css
+import { Alert, AlertTitle } from '@mui/material';
+import { green, red } from '@mui/material/colors'; 
+import "./style.css"; 
+import SaveIcon from "@mui/icons-material/Save";
+import CancelIcon from '@mui/icons-material/Cancel';
+import ButtonCircularProgress from "src/component/ButtonCircularProgress";
+
+
 
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
-
-
 const useStyles = makeStyles((theme) => ({
   LoginBox: {
     paddingBottom: "50px",
+    overflow : "hidden",
+ 
   },
   basic: {
     textAlign: "center",
-    fontFamily: "Poppins",
+    // fontFamily: "Poppins",
+    fontFamily: "Roboto",
     fontSize: "30px",
     paddingTop: "20px",
     color: "#141518",
+  
   },
   input_fild2: {
     width: "100%",
+    borderRadius: "120px",
+
     "& input": {
-      height: "33px",
-      border: "1px solid #DDD",
-      borderRadius: "20px",
+      boxShadow: "0 0 5px #7b6c81",
+      border: "1px soild white !important",
+      
+      borderRadius: "120px",
       paddingLeft: "15px",
       fontSize: "18px",
       "@media(max-width:960px)": {
@@ -131,8 +98,6 @@ const useStyles = makeStyles((theme) => ({
       // fontSize:"16px",
       width: "120px",
       padding: "5px 16px",
-
-
     },
   },
   ButtonBtn2: {
@@ -144,8 +109,6 @@ const useStyles = makeStyles((theme) => ({
       // fontSize:"16px",
       width: "120px",
       padding: "5px 16px",
-
-
     },
   },
   ButtonBtn3: {
@@ -157,8 +120,6 @@ const useStyles = makeStyles((theme) => ({
       // fontSize:"16px",
       width: "120px",
       padding: "5px 16px",
-
-
     },
   },
   ButtonBtn4: {
@@ -170,8 +131,6 @@ const useStyles = makeStyles((theme) => ({
       // fontSize:"16px",
       width: "120px",
       padding: "5px 16px",
-
-
     },
   },
   name: {
@@ -189,19 +148,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   inputbox: {
-    width: "10s0%",
+    width: "100%",
     height: "120px",
     borderRadius: "120px",
-
-
   },
   profile: {
+    margin: "auto",
     display: "flex",
     flexDirection: "column",
     // marginTop: "-75px",
     width: "fit-content",
     padding: "5px 20px",
-    marginBottom: "10px"
+    marginBottom: "10px",
   },
   coverpic: {
     width: "100%",
@@ -213,6 +171,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   CoverBox: {
+    background: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))",
+   
     display: "flex",
     alignItems: "flex-end",
     flexDirection: "column",
@@ -234,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer!important",
     },
     "& svg": {
-      marginLeft: "7px"
+      marginLeft: "7px",
     },
   },
   profilePic: {
@@ -247,6 +207,7 @@ const useStyles = makeStyles((theme) => ({
     // height: "120px",
     borderRadius: "50%",
     // padding: "10px",
+    borderColor: "#fff",
     "& img": {
       width: "200px!important",
       height: "200px",
@@ -265,10 +226,7 @@ const useStyles = makeStyles((theme) => ({
   Box: {
     width: "100%",
     height: isMobile ? "80px" : "200px",
-    backgroundImage: "linear-gradient(to bottom, #c04848, #480048)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "100%",
-    backgroundPosition: "center center",
+    background: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))",
   },
   newsec: {
     display: "flex",
@@ -281,48 +239,53 @@ const useStyles = makeStyles((theme) => ({
     "@media(max-width:560px)": {},
   },
   title: {
-    width: "fit-content",
-    padding: "10px",
+    textAlign: "center",
+    display: "block",
+    background: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))",
+    width: "20% !important",
+    padding: "10px 20px",
     borderBottom: "1px solid #ddd",
     borderRadius: "10px",
-    color: "#878484"
+    color: "#fff",
   },
   parentOfInput: {
-    // width: "80%",
+    width: "97%",
     marginLeft: "20px",
     marginTop: "25px",
     "& div:before": {
-      width: "0px"
+      width: "0px",
     },
     "& div:after": {
       width: "91%",
       left: "18px",
       borderRadius: "20px",
-    }
+    },
   },
   parentOfInput1: {
     marginLeft: "0px",
     marginTop: "0px",
     "& div:before": {
-      width: "0px"
+      width: "0px",
     },
     "& div:after": {
       width: "91%",
       left: "18px",
       borderRadius: "20px",
-    }
+    },
   },
   phoneEmail: {
+    background: " #c695da61",
+    boxShadow: "0 0 10px #7b6c81",
     width: "97%",
     marginLeft: "10px",
     marginTop: "0px",
     "& div": {
-      borderRadius: "15px",
+      borderRadius: "5px",
       padding: "10px",
-    }
+    },
   },
   linkBox: {
-    width: "95%",
+    width: "100%",
     marginLeft: "14px",
     marginTop: "20px",
     fontSize: "16px",
@@ -337,12 +300,332 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "15px",
     "& span": {
       color: "#777",
-      fontSize: "13px"
-    }
-    
-  }
-  
+      fontSize: "13px",
+    },
+  },
+  btnPro: {
+    background: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))  !important",
+    transition: "background  .6s",
+    "&:hover": {
+        background: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))!important", 
+    },
+  },
+  btnOutPro: {
+    background : "#fff !important",
+    border: "#6345ED 1px solid !important",
+    color: "#6345ED  !important",
+    "&:hover": {
+        background: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))!important", 
+      color: "white !important",
+      border: "none !important",
+    },
+  },
+  homeSetting: {
+    // background: "linear-gradient(0deg, #c53bf92b, #7d43f012)",
+    background: "linear-gradient(to bottom left, #640D5F, black)" ,
+    borderRadius: "20px",
+    padding: "1rem",
+    margin: "1rem auto",
+    width: "100%",
+    boxShadow: "0 0 10px #a2a2a2",
+  },
+  boxSitting: {
+    borderRadius: "20px",
+    padding: "2rem 1rem",
+    boxShadow: "0 0 15px #7b6c8157",
+    // background: " #c695da61",
+     background: " #fff",
+
+    margin: "2rem 0",
+  },
+
+  inputField: {
+    width: "100%",
+    borderRadius: "8px",
+    "& input": {
+      boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+      padding: "10px 15px",
+      fontSize: "16px",
+      borderRadius: "8px",
+      border: "1px solid #ccc",
+      transition: "all 0.3s ease",
+      "&:focus": {
+        borderColor: theme.palette.primary.main,
+        outline: "none",
+      },
+    },
+    "& .MuiInput-underline:before": {
+      borderBottom: "1px solid #ddd",
+    },
+    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+      borderBottom: "2px solid #6345ED",
+    },
+  },
 }));
+
+// const useStyles = makeStyles((theme) => ({
+//   LoginBox: {
+//     paddingBottom: "50px",
+//   },
+//   basic: {
+//     textAlign: "center",
+//     fontFamily: "Poppins",
+//     fontSize: "30px",
+//     paddingTop: "20px",
+//     color: "#141518",
+//   },
+//   input_fild2: {
+//     width: "100%",
+//     "& input": {
+//       height: "33px",
+//       border: "1px solid #DDD",
+//       borderRadius: "20px",
+//       paddingLeft: "15px",
+//       fontSize: "18px",
+//       "@media(max-width:960px)": {
+//         height: "15px",
+//         marginTop: "-15px",
+//       },
+//     },
+//   },
+//   Button: {
+//     display: "flex",
+//     justifyContent: "center",
+//     paddingBottom: "25px",
+//   },
+//   ButtonBtn: {
+//     paddingTop: "30px",
+//     paddingRight: "10px",
+//     width: "fit-content",
+//     "& a": {
+//       height: "41px!important",
+//       width: "115px",
+//       // fontSize:"16px",
+
+//       padding: "5px 16px",
+//     },
+//   },
+//   ButtonBtn1: {
+//     paddingTop: "30px",
+//     paddingRight: "10px",
+//     width: "fit-content",
+//     "& button": {
+//       height: "41px!important",
+//       // fontSize:"16px",
+//       width: "120px",
+//       padding: "5px 16px",
+
+
+//     },
+//   },
+//   ButtonBtn2: {
+//     paddingTop: "30px",
+//     paddingRight: "10px",
+//     width: "fit-content",
+//     "& button": {
+//       height: "41px!important",
+//       // fontSize:"16px",
+//       width: "120px",
+//       padding: "5px 16px",
+
+
+//     },
+//   },
+//   ButtonBtn3: {
+//     paddingTop: "30px",
+//     paddingRight: "10px",
+//     width: "fit-content",
+//     "& button": {
+//       height: "41px!important",
+//       // fontSize:"16px",
+//       width: "120px",
+//       padding: "5px 16px",
+
+
+//     },
+//   },
+//   ButtonBtn4: {
+//     paddingTop: "30px",
+//     paddingRight: "10px",
+//     width: "fit-content",
+//     "& button": {
+//       height: "41px!important",
+//       // fontSize:"16px",
+//       width: "120px",
+//       padding: "5px 16px",
+
+
+//     },
+//   },
+//   name: {
+//     display: "flex",
+//     alignItems: "center",
+//     fontSize: "15px",
+//     color: "#141518",
+//     [theme.breakpoints.down("sm")]: {
+//       display: "block",
+//     },
+//     "& p": {
+//       fontSize: "15px",
+//       color: "#707070",
+//       paddingLeft: "5px",
+//     },
+//   },
+//   inputbox: {
+//     width: "10s0%",
+//     height: "120px",
+//     borderRadius: "120px",
+
+
+//   },
+//   profile: {
+//     display: "flex",
+//     flexDirection: "column",
+//     // marginTop: "-75px",
+//     width: "fit-content",
+//     padding: "5px 20px",
+//     marginBottom: "10px"
+//   },
+//   coverpic: {
+//     width: "100%",
+//   },
+
+//   coverback: {
+//     height: "127.7px",
+//     width: "100%",
+//   },
+
+//   CoverBox: {
+//     display: "flex",
+//     alignItems: "flex-end",
+//     flexDirection: "column",
+//   },
+//   coverEdit: {
+//     color: "#fff",
+//     fontSize: "16px",
+//     marginTop: "-40px",
+//     padding: "10px",
+//     position: "relative",
+//     // backgroundColor: "red",
+//     "& input": {
+//       position: "absolute",
+//       left: "10px",
+//       top: "-10px",
+//       width: "100%",
+//       height: "100%",
+//       opacity: "0",
+//       cursor: "pointer!important",
+//     },
+//     "& svg": {
+//       marginLeft: "7px"
+//     },
+//   },
+//   profilePic: {
+//     width: "320px",
+//     position: "relative",
+//     margin: "auto",
+//     display: "block",
+//     justifyContent: "space-between",
+//     alignItems: "center",
+//     // height: "120px",
+//     borderRadius: "50%",
+//     // padding: "10px",
+//     "& img": {
+//       width: "200px!important",
+//       height: "200px",
+//       marginRight: "10px",
+//       borderRadius: "50%",
+//     },
+//     "& input": {
+//       position: "absolute",
+//       left: "27%",
+//       top: "43%",
+//       width: "75%",
+//       height: "15%",
+//       opacity: "0",
+//     },
+//   },
+//   Box: {
+//     width: "100%",
+//     height: isMobile ? "80px" : "200px",
+//     backgroundImage: "linear-gradient(to bottom, #c04848, #480048)",
+//     backgroundRepeat: "no-repeat",
+//     backgroundSize: "100%",
+//     backgroundPosition: "center center",
+//   },
+//   newsec: {
+//     display: "flex",
+//     "@media(max-width:560px)": {
+//       display: "block",
+//     },
+//   },
+//   mainadd: {
+//     paddingTop: "8px",
+//     "@media(max-width:560px)": {},
+//   },
+//   title: {
+//     width: "fit-content",
+//     padding: "10px",
+//     borderBottom: "1px solid #ddd",
+//     borderRadius: "10px",
+//     color: "#878484"
+//   },
+//   parentOfInput: {
+//     // width: "80%",
+//     marginLeft: "20px",
+//     marginTop: "25px",
+//     "& div:before": {
+//       width: "0px"
+//     },
+//     "& div:after": {
+//       width: "91%",
+//       left: "18px",
+//       borderRadius: "20px",
+//     }
+//   },
+//   parentOfInput1: {
+//     marginLeft: "0px",
+//     marginTop: "0px",
+//     "& div:before": {
+//       width: "0px"
+//     },
+//     "& div:after": {
+//       width: "91%",
+//       left: "18px",
+//       borderRadius: "20px",
+//     }
+//   },
+//   phoneEmail: {
+//     width: "97%",
+//     marginLeft: "10px",
+//     marginTop: "0px",
+//     "& div": {
+//       borderRadius: "15px",
+//       padding: "10px",
+//     }
+//   },
+//   linkBox: {
+//     width: "95%",
+//     marginLeft: "14px",
+//     marginTop: "20px",
+//     fontSize: "16px",
+//     color: "#777",
+//     border: "1px solid #ddd",
+//     padding: "12px",
+//     borderRadius: "15px",
+//     justifyContent: "space-between",
+//     display: "flex",
+//     flexWrap: "wrap",
+//     alignItems: "center",
+//     paddingRight: "15px",
+//     "& span": {
+//       color: "#777",
+//       fontSize: "13px"
+//     }
+    
+//   }
+  
+// }));
 export function copyTextById(id) {
   var copyText = document.getElementById(id);
   copyText.select();
@@ -834,9 +1117,9 @@ export default function ProfileSettings() {
       <Grid className={classes.CoverBox}>
         <Box
           className={classes.Box}
-          style={cover
-            ? { backgroundImage: `url(${cover})`, }
-            : null}
+          // style={cover
+          //   ? { backgroundImage: `url(${cover})`, }
+          //   : null}
         >
         </Box>
         <Box className={classes.coverEdit} style={{ cursor: "pointer!important" }}>
@@ -856,7 +1139,7 @@ export default function ProfileSettings() {
       </Grid>
       {/* End Cover */}
 
-      <Container maxWidth="sm">
+      <Container maxWidth="md" className={classes.homeSetting}>
 
         {/* Start Profile Img */}
         <Box className={classes.profile}>
@@ -868,14 +1151,52 @@ export default function ProfileSettings() {
             <img
               src={profilePic || "/images/users/profilepic1.svg"}
               alt="Edit profile picture"
-              style={profilePic ? { padding: "4px", border: "dotted 2px red", display: "block", width: "fit-content", margin: "auto", } : { border: "dotted 2px red", marginTop: "3px", display: "block", width: "fit-content", margin: "auto", }}
+              style={
+                profilePic
+                  ? {
+                      padding: "4px",
+                      border: "dotted 2px #fff",
+                      display: "block",
+                      width: "fit-content",
+                      margin: "auto",
+                    }
+                  : {
+                      border: "dotted 2px #fff !important",
+                      marginTop: "3px",
+                      display: "block",
+                      width: "fit-content",
+                      margin: "auto",
+                    }
+              }
             />
-            <Box style={{ width: "fit-content", margin: "15px auto" }}>
-              <FiEdit style={{ cursor: "pointer" }} /> Add Picture
+               <Box
+              style={{
+                width: "fit-content",
+                margin: "15px auto",
+                textAlign: "center",
+                padding: ".7rem 1rem",
+                borderRadius: "20px",
+                color: "white",
+                fontWeight: "700",
+                cursor: "pointer",
+              }}
+              className={classes.btnPro}
+            >
+              <label
+                htmlFor="upload-photo"
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <FiEdit style={{ marginRight: "8px" }} /> Add Picturer
+              </label>
               <input
                 type="file"
+                id="upload-photo"
                 accept="image/*"
-                style={{ cursor: "pointer" }}
+                style={{ display: "none" }} // إخفاء زر التحميل
                 onChange={(e) => {
                   getBase64(e.target.files[0], (result) => {
                     setProfilePic(result);
@@ -888,37 +1209,39 @@ export default function ProfileSettings() {
         {/* End Profile Img */}
         {/* Start Name */}
         <Box mt={0} style={{ marginTop: "-15px" }}>
-          <Grid container spacing={1} alignItems="center" >
-            <Grid item xs={12} md={3}>
+          <Grid  container spacing={1} alignItems="center" >
+            <Grid item xs={12} >
               <label className={classes.title}>NicName</label>
             </Grid>
-            <Grid item xs={12} md={9} className={classes.parentOfInput}>
+            <Grid item xs={12} className={classes.parentOfInput}>
               <TextField
                 value={name}
                 // error={!name}
                 // helperText={!name && "Please enter valid name"}
                 required="false"
                 onChange={(e) => setname(e.target.value)}
-                className={classes.input_fild2}
+                // className={classes.input_fild2}
+                className={classes.inputField}
               />
             </Grid>
           </Grid>
         </Box>
         {/* End Name */}
         {/* Start Specilaity */}
-        <Box mt={0}>
-          <Grid container style={{ display: "block" }} spacing={1}>
-            <Grid item xs={12} md={3}>
+        <Box mt={2} >
+          <Grid container spacing={1} alignItems="center" >
+            <Grid item xs={12}>
               <label className={classes.title}>Speciality</label>
             </Grid>
-            <Grid item xs={12} md={9} className={classes.parentOfInput}>
+            <Grid item xs={12} className={classes.parentOfInput}>
               <TextField
                 value={speciality}
                 // error={!speciality}
                 // helperText={!speciality && "Please enter valid speciality"}
                 required="false"
                 onChange={(e) => setspeciality(e.target.value)}
-                className={classes.input_fild2}
+                // className={classes.input_fild2}
+                className={classes.inputField}
               />
 
             </Grid>
@@ -927,26 +1250,27 @@ export default function ProfileSettings() {
         {/* End Speciality */}
 
         {/* Start About Me */}
-        <Box mt={0}>
-          <Grid container spacing={1} style={{ alignItems: "center" }}>
-            <Grid item xs={12} style={{ marginBottom: "15px" }} >
+        <Box mt={2}>
+          <Grid container spacing={1} alignItems="center">
+            <Grid item xs={12} >
               <label className={classes.title}>About me</label>
             </Grid>
 
-            <Grid item xs={12} className={classes.parentOfInput1}>
+            <Grid item xs={12} className={classes.parentOfInput}>
 
               <TextField
-                id="outlined-multiline-static"
+                // id="outlined-multiline-static"
                 value={bio}
-                focused="true"
-                multiline
+                // focused="true"
+                // multiline
                 // error={!bio}
                 // helperText={!bio && "Please Fill in something about you"}
                 required="false"
                 onChange={(e) => setbio(e.target.value)}
-                className={classes.input_fild2}
-                rows={2}
-                style={{ border: "1px solid #DDD", borderRadius: "14px", width: "95%", marginLeft: "20px" }}
+                // className={classes.input_fild2}
+                className={classes.inputField}
+                
+               
               />
             </Grid>
           </Grid>
@@ -954,22 +1278,20 @@ export default function ProfileSettings() {
         {/* End About Me */}
 
         {/* Start Email */}
-        <Box mt={0} mb={0} style={{ width: "93%!important" }}>
-  <Grid container style={{ display: "block" }} spacing={2}
-    direction="row"
-    justifyContent="center"
-    alignItems="center">
-    <Grid item xs={12} md={0}>
+        <Box mt={2}>
+  <Grid container spacing={1} alignItems="center">
+    <Grid item xs={12}>
       <label className={classes.title}>Email</label>
     </Grid>
-    <Grid item xs={12} md={8}>
+    <Grid item xs={12} className={classes.parentOfInput}>
       {editingEmail ? (
         <TextField
           fullWidth
           variant="outlined"
           required={false}
           margin="normal"
-          className={classes.phoneEmail}
+          className={classes.inputField}
+
           value={editedEmail}
           onChange={(e) => setEditedEmail(e.target.value)}
         />
@@ -980,8 +1302,10 @@ export default function ProfileSettings() {
           variant="outlined"
           required={false}
           margin="normal"
-          className={classes.phoneEmail}
+          className={classes.inputField}
+
           value={user.userData?.email}
+          style={{color :"white !important"}}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -1019,24 +1343,22 @@ export default function ProfileSettings() {
         {/* End Email */}
 
         {/*Start  Phone Number */}
-        <Box mt={0}>
-         <Grid container style={{ display: "block" }} spacing={2}
-           direction="row"
-           justifyContent="center"
-          alignItems="center">
+        <Box mt={2}>
+         <Grid container spacing={1} alignItems="center">
           <Grid item xs={12} md={0}>
-          <label className={classes.title}>Phone Number</label>
+          <label  className={classes.title}>Phone Number</label>
          </Grid>
-         <Grid item xs={12} md={8}>
+         <Grid   item xs={12} className={classes.parentOfInput}>
       {editingPhone ? (
         <TextField
           defaultCountry="US"
-          fullWidth
-          variant="outlined"
+          // fullWidth
+          // variant="outlined"
           margin="normal"
           value={editedPhone}
           onChange={(e) => setEditedPhone(e.target.value)}
-          className={classes.phoneEmail}
+          className={classes.inputField}
+
         />
       ) : (
         <TextField
@@ -1046,7 +1368,8 @@ export default function ProfileSettings() {
           variant="outlined"
           margin="normal"
           value={user.userData?.phone}
-          className={classes.phoneEmail}
+          className={classes.inputField}
+
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -1086,15 +1409,12 @@ export default function ProfileSettings() {
         {needVerification.length == 1 && <VerificationAlert verify={needVerification} />}
 
         {/* Start profile URL */}
-        <Box mt={0}>
-          <Grid container style={{ display: "block" }} spacing={2}
-            direction="row"
-            justifyContent="center"
-            alignItems="center">
-            <Grid item xs={12} md={4}>
-              <label className={classes.title}>Profile URL</label>
+        <Box mt={2}>
+          <Grid container spacing={1} alignItems="center">
+            <Grid item xs={12}>
+              <label  className={classes.title} mb={1}>Profile URL</label>
             </Grid>
-            <Grid item xs={12} md={8} className={classes.linkBox} >
+            <Grid item xs={12} className={classes.linkBox} mt={1} >
               <span >
                 https://masplatform.net/user-profile/{user?.userData?.userName}
               </span>  &nbsp;
@@ -1110,17 +1430,13 @@ export default function ProfileSettings() {
         {/* End Profile URL */}
 
         {/* Start Wllet Addrss */}
-        <Box mt={4}>
-          <Grid container spacing={2}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            display="block"
+        <Box mt={2}>
+          <Grid container spacing={1} alignItems="center"
           >
-            <Grid item xs={12} >
-              <label className={classes.title}>Wallet Address</label>
+            <Grid  item xs={12} >
+              <label  className={classes.title}>Wallet Address</label>
             </Grid>
-            <Grid item xs={12} className={classes.linkBox} >
+            <Grid item xs={12} className={classes.linkBox} mt={1}>
               <span >
                 {user.userData?.ethAccount?.address}
               </span> &nbsp;
@@ -1136,12 +1452,12 @@ export default function ProfileSettings() {
         {/* End Wallet Address */}
 
         {/* Start Referral  */}
-        <Box mt={4}>
+        <Box mt={2}>
           <Grid container style={{ display: "block" }} alignItems="center">
-            <Grid item xs={12} md={4}>
-              <label className={classes.title}>Referral</label>
+            <Grid item xs={12}>
+              <label  className={classes.title}>Referral</label>
             </Grid>
-            <Grid item xs={12} md={4} className={classes.linkBox} >
+            <Grid item xs={12} className={classes.linkBox} mt={1}>
               <span >{user.userData?.referralCode}</span>
               &nbsp;
               <CopyToClipboard text={user.userData?.referralCode}>
@@ -1165,26 +1481,28 @@ export default function ProfileSettings() {
               <Button
                 variant="contained"
                 size="large"
-                color="primary"
+                // color="primary"
                 component={Link}
                 to="/"
                 disabled={isLoading}
+                className={classes.btnOutPro}
               >
                 Cancel
               </Button>
             </Box>
              {/* start Deletion Button */}
-             <Box className={classes.ButtonBtn2}>
+             <Box  className={classes.ButtonBtn2}>
                <Button
         variant="contained"
         size="large"
         color="secondary"
         disabled={isLoading}
         onClick={handleOpenDelete}
+        className={classes.btnPro}
         style={{
-          padding: '10px 20px!important',
-          backgroundColor: 'blue',
-          color: 'white',
+          padding: "10px 20px!important",
+          backgroundColor: "blue",
+          color: "white",
         }}
       >
         {isLoading ? "Delete..." : "Delete"}
@@ -1226,10 +1544,11 @@ export default function ProfileSettings() {
         color="secondary"
         disabled={isLoading}
         onClick={handleOpenDeactivate}
+        className={classes.btnPro}
         style={{
-          padding: '10px 20px!important',
-          backgroundColor: 'blue',
-          color: 'white',
+          padding: "10px 20px!important",
+          backgroundColor: "blue",
+          color: "white",
         }}
       >
         {isLoading ? 'deactivate...' : 'deactivate'}
@@ -1273,10 +1592,11 @@ export default function ProfileSettings() {
         color="secondary"
         disabled={isLoading}
         onClick={() => navigate('/kyc')}
+        className={classes.btnPro}
         style={{
-          padding: '10px 20px!important',
-          backgroundColor: 'blue',
-          color: 'white',
+          padding: "10px 20px!important",
+          backgroundColor: "blue",
+          color: "white",
         }}
       >
         {isLoading ? 'KYC...' : 'KYC'}
@@ -1329,6 +1649,7 @@ export default function ProfileSettings() {
             color="secondary"
             variant="contained"
             disabled={isLoading}
+            
           >
             {isLoading ? 'KYC...' : 'Confirm'}
             
@@ -1344,7 +1665,12 @@ export default function ProfileSettings() {
                 color="secondary"
                 disabled={isLoading}
                 onClick={updateProfile}
-                style={{ padding: "10px 20px!important" }}
+                className={classes.btnPro}
+                style={{
+                  padding: "10px 20px!important",
+                  backgroundColor: "blue",
+                  color: "white",
+                }}
               >
                 {isLoading ? "Updating..." : "Update"}
                 {isLoading && <ButtonCircularProgress />}

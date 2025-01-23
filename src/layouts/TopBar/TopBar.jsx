@@ -10,7 +10,8 @@ import {
   Badge,
   Box,
   Typography,
-  useMediaQuery
+  useMediaQuery,
+  
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { AiOutlineLogout } from "react-icons/ai";
@@ -33,7 +34,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import './TopBar.css'
 
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
-import { PrimaryButton } from '../../component/ui/Button/button'
+
 
 
 const menuLinks = [
@@ -560,7 +561,11 @@ export default function Header() {
 
                     </> :
                       <Button
-                        className={classes.createButton}
+                      className="primaryButton"
+                 fullWidth
+                variant="contained"
+                size="large"
+                        // className={classes.createButton}
                         onClick={() => navigate("/profile")}
                       >
                         Create on MAS
@@ -593,23 +598,27 @@ export default function Header() {
                   {!isMeduimScreen &&
                     (
                       <Box className="hidden md:flex !bg-slate-700">
-                        <PrimaryButton
+                        <Button
+                             className="primaryButton"
+                             
+                            variant="contained"
+                            size="large"
                           onClick={() => navigate('/buymas')}
-                          variant="contained"
-                          size="36px"
-                          color="secondary"
+                         
+                        
+                        
                           style={{ marginRight: '10px' }}
                         >
                           buy a mas
-                        </PrimaryButton>
-                        <PrimaryButton
+                        </Button>
+                        <Button
                           onClick={() => navigate('/connectWallet')}
-                          variant="contained"
-                          size="36px"
-                          color="secondary"
+                          className="primaryButton"
+                             
+                            variant="contained"
                         >
                           connect wallet
-                        </PrimaryButton>
+                        </Button>
 
                       </Box>
                     )
@@ -619,14 +628,27 @@ export default function Header() {
             )
               : (
                 <div className='btn_group'>
-                  <Link style={{ color: "white" }} to="/profile" className=' Create_on_MAS'> <PrimaryButton component="primaryButton"> Create on MAS</PrimaryButton></Link>
+                  <Link style={{ color: "white" }} to="/profile" className=' Create_on_MAS'> <Button className="primaryButton"
+                             fullWidth
+                            variant="contained"> Create on MAS</Button></Link>
 
                   <Link style={{ color: "white" }} to="/login">
-                    <PrimaryButton component="primaryButton">LogIn</PrimaryButton>
+                    <Button  
+                     className="primaryButton"
+                             fullWidth
+                            variant="contained"
+                           
+                            >LogIn</Button>
 
                   </Link>
-                  <Link style={{ color: "white" }} to="/buymas" className='Buy_A_Mas'><PrimaryButton component="primaryButton">Buy A Mas</PrimaryButton></Link>
-                  <Link style={{ color: "white" }} to="/connectWallet" className='ConnectWallet'> <PrimaryButton component="primaryButton">Connect Wallet</PrimaryButton></Link>
+                  <Link style={{ color: "white" }} to="/buymas" className="primaryButton"
+                             
+                            variant="contained"><Button className="primaryButton"
+                            
+                           variant="contained">Buy A Mas</Button></Link>
+                  <Link style={{ color: "white" }} to="/connectWallet" className='ConnectWallet'> <Button className="primaryButton"
+                             
+                            variant="contained">Connect Wallet</Button></Link>
 
 
                 </div>
@@ -684,7 +706,9 @@ export default function Header() {
               <Button
                 variant="contained"
                 size="small"
-                color="secondary"
+                color='white'
+                mr={2}
+               
                 fullWidth
                 onClick={() => setIsLogoutOpen(false)}
               >
@@ -693,7 +717,9 @@ export default function Header() {
               <Button
                 variant="contained"
                 size="small"
-                color="secondary"
+                color='white'
+
+               
                 fullWidth
                 onClick={() => {
                   auth.logOut();

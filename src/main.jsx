@@ -7,7 +7,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import CssBaseline from '@mui/material/CssBaseline';
-import { withAnimation } from "./component/ui/Button/button";
 
 
 ReactDOM.render(

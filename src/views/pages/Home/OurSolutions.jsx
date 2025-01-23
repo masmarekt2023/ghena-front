@@ -99,7 +99,6 @@ export default function OurSolutions({ ourSolutions }) {
                     ? ourSolutions?.contentFile
                     : ''
                 }
-                alt=""
               />
             </Box>
           </Grid>

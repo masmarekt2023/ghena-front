@@ -6,7 +6,7 @@ import {
   Grid,
   Button,
   Avatar,
-} from '@mui/material/styles';
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
