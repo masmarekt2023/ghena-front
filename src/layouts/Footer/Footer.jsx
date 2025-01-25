@@ -43,7 +43,7 @@ console.log(socialLinks)
         <div style={{ textAlign: "center", marginBottom: "20px" }}>
         <Link to="/">
           <img
-            src="assets/Images/logo.png"
+            src="../../../public/assets/Images/logo.png"
             alt="Logo"
             style={{
               width: "120px",

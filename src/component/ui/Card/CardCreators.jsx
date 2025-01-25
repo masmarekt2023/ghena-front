@@ -100,11 +100,11 @@ function CardCreators({
   };
 
   useEffect(() => {
-    setnbLike(userCardData?.likesUsers.length);
-    setnbSubscribed(userCardData?.followers.length);
+    setnbLike(userCardData?.likesUsers?.length);
+    setnbSubscribed(userCardData?.followers?.length);
     if (auth.userData?._id) {
-      setisLike(userCardData?.likesUsers.includes(auth.userData?._id));
-      setisSubscribed(userCardData?.followers.includes(auth.userData?._id));
+      setisLike(userCardData?.likesUsers?.includes(auth.userData?._id));
+      setisSubscribed(userCardData?.followers?.includes(auth.userData?._id));
     }
     console.log(userCardData?._id)
 

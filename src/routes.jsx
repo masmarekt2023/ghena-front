@@ -24,9 +24,178 @@ export const routes = [
   },
   {
     path: "/profile",
+    guard: true,
     element: lazy(() =>
-      import("src/views/pages/Profile/index")
+      import("src/views/pages/Dashboard/layout/MainLayout")
     ),
+    children: [
+      {
+        index: true, // This makes it the default route
+        element: lazy(() =>
+          import("src/views/pages/Dashboard/pages/Bundles/Bundles")
+        ),
+      },
+      {
+       
+        path: 'My_Bundles',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Bundles/Bundles")
+        ),
+      },
+
+      {
+        path: 'My_Marketplace',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Marketplace/Marketplace")
+        ),
+      },
+
+      {
+        path: 'My_purchases',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/purchases/purchases")
+        ),
+      },
+      {
+        path: 'My_sales',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/sales/sales")
+        ),
+      },
+
+      {
+        path: 'My_subscriptions',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/subscriptions/subscriptions")
+        ),
+      },
+      {
+        path: 'My_feed',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Feed/Feed")
+        ),
+      },
+
+      {
+        path: 'My_Auctions',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Auction/Auction")
+        ),
+      },
+      {
+        path: 'My_Subscribers',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Subscribers/Subscribers")
+        ),
+      },
+      {
+        path: 'Supporter_List',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/SupporterList/SupporterList")
+        ),
+      },
+      {
+        path: 'Donate_Transaction',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/DonateList/DonateList")
+        ),
+      },
+      {
+        path: 'Transaction_History',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/TransactionHistory/TransactionHistory")
+        ),
+      },
+     
+     
+     
+    ]
+    
+    
+   
+  },
+  {
+    path: "/userdashbord",
+    // layout: HomeLayout,
+
+    element: lazy(() =>
+      import("src/views/pages/Dashboard/layout/MainLayout")
+    ),
+    children: [
+      {
+        path: 'My_Bundles',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Bundles/Bundles")
+        ),
+      },
+
+      {
+        path: 'My_Marketplace',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Marketplace/Marketplace")
+        ),
+      },
+
+      {
+        path: 'My_purchases',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/purchases/purchases")
+        ),
+      },
+      {
+        path: 'My_sales',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/sales/sales")
+        ),
+      },
+
+      {
+        path: 'My_subscriptions',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/subscriptions/subscriptions")
+        ),
+      },
+      {
+        path: 'My_feed',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Feed/Feed")
+        ),
+      },
+
+      {
+        path: 'My_Auctions',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Auction/Auction")
+        ),
+      },
+      {
+        path: 'My_Subscribers',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/Subscribers/Subscribers")
+        ),
+      },
+      {
+        path: 'Supporter_List',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/SupporterList/SupporterList")
+        ),
+      },
+      {
+        path: 'Donate_Transaction',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/DonateList/DonateList")
+        ),
+      },
+      {
+        path: 'Transaction_History',
+        element:lazy(() =>
+          import("src/views/pages/Dashboard/pages/TransactionHistory/TransactionHistory")
+        ),
+      },
+     
+     
+     
+    ]
   },
   {
     path: "/create-account",
@@ -60,9 +229,12 @@ export const routes = [
 
   {
     path: "/",
-    layout: HomeLayout,
+    // layout: HomeLayout,
     guard: true,
-    element: lazy(() => import("src/views/pages/Profile/index")),
+    // element: lazy(() => import("src/views/pages/Profile/index")),
+    element: lazy(() => import("src/views/pages/Dashboard/layout/MainLayout")),
+    
+
   },
   {
     path: "/profilesettings",

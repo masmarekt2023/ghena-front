@@ -204,10 +204,11 @@ const ShareForAudienceDialog = ({ show, handleClose, audienceData }) => {
           Cancel
         </Button>
         <Button
+         color="primary"
           variant="contained"
           onClick={onSubmit}
           size="large"
-          className={classes.submitButton}
+          // className={classes.submitButton}
         >
           {isEdit ? "Edit" : "Share"}
         </Button>

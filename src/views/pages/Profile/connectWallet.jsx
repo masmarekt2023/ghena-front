@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     marginTop: theme.spacing(2),
     marginLeft: theme.spacing(2),
+    "@media(max-width:768px)": {
+      width: "90%",
+    },
+    
   },
   walletConnect: {
     marginTop: theme.spacing(2),
@@ -704,7 +708,7 @@ const ConnectWallet = () => {
         {/* Your top bar content goes here */}
       </div>
       <div className={classes.balanceBox}>
-        <Typography variant="h5" component="h5">
+        <Typography variant="h5" component="h5" mb={2}>
           YOUR Balance
         </Typography>
         <BalanceBox

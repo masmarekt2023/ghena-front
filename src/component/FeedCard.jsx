@@ -49,15 +49,25 @@ const useStyles = makeStyles(() => ({
   // },
   cards: {
     border: "solid 0.5px #c9c7c3",
+    color : "white",
     width: "270px",
-    // backgroundColor: "#fff",
-    height: 400,
+    maxWidth: "450px",
+    height: "550px",
+    maxHeight: "600px",
     padding: "10px",
-    borderRadius: "10px",
+    borderRadius: "34px",
+    backgroundColor: "rgba(85, 84, 84, 0.7)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    marginRight : "10px",
+    // backgroundColor: "#fff",
+    height: 450,
+    
+   
     margin: "0 10px",
     position: "relative",
     backgroundImage:
-      "linear-gradient(45deg, #eef2f3 90%,#8e9eab 30%, #eef2f3 90%)",
+      "linear-gradient(to top right, #640D5F, rgb(1, 15, 78))",
     "&:hover": {
       transform: "scale(1.03)",
       transition: "all 0.4s ease-in-out 0s",
@@ -235,12 +245,13 @@ export default function UsersCard({ data, index, updateList }) {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
+                color : "white !important",
               }}
           >
-            {data?.nftId[0]?.bundleName}
+            {data?.nftId[0]?.bundleName} 
           </Typography>
           <Typography
-              variant="h6"
+              variant=""
               style={{
                 marginBottom: "-10px",
                 fontWeight: 500,
@@ -248,9 +259,10 @@ export default function UsersCard({ data, index, updateList }) {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
+                color : "#fff !important",
               }}
           >
-            {data.title}
+            {data.title} 
           </Typography>
           <Typography
               variant="body1"
@@ -274,13 +286,13 @@ export default function UsersCard({ data, index, updateList }) {
           {isVideo ? (
             <>
               <Box id={`imagecard${data._id}`}>
-                <video controls style={{ width: "100%", height: '100%' }}>
+                <video controls style={{ width: "100%", height: '100%',marginBottom : "10px" }}>
                   <source src={data.mediaUrl} type="video/mp4" />
                 </video>
               </Box>
               <Button
-                  className={classes.downloadButton}
-                  fullWidth
+                  className={"primaryButton"}
+                  style={{marginTop : "15px" ,height : "20px"}}
                   onClick={downLoadFile}
               >
                 Download
@@ -302,10 +314,10 @@ export default function UsersCard({ data, index, updateList }) {
             </Box>
           )}
         </Box>
-        <Box>
-          <IconButton>
+        <Box   style={{ padding: "5px" }}>
+          <IconButton >
             <FaHeart
-              style={isLike ? { color: "#d15b5b" } : {}}
+              style={isLike ? { color: "#d15b5b" } : {color:"white"}}
               onClick={() => likeDislikeFeedHandler(data._id)}
             />
           </IconButton>

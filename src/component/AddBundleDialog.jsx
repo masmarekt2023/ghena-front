@@ -194,10 +194,11 @@ const AddBundleDialog = ({ show, handleClose, bundleData }) => {
           Cancel
         </Button>
         <Button
+        color="primary"
           variant="contained"
           onClick={onSubmit}
           size="large"
-          className={classes.submitButton}
+          // className={classes.submitButton}
           disabled={isEdit && !dirtyFields.file}
         >
           {isEdit ? "Edit" : "Create"}
