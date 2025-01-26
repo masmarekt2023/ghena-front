@@ -17,7 +17,7 @@ import Customization from '../Customization';
 import { SET_MENU } from '../../store/actions';
 import { drawerWidth } from '../../store/constant';
 import Breadcrumbs from '../../ui-component/extended/Breadcrumbs';
-
+import TopBar from '../../../../../layouts/TopBar/TopBar'
 
 // assets
 import { IconChevronRight } from '@tabler/icons-react';
@@ -164,8 +164,11 @@ const MainLayout = () => {
 
   return (
   <>
+
+
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
+   
       {/* header */}
       <AppBar
         enableColorOnDark
@@ -177,9 +180,18 @@ const MainLayout = () => {
           // background: (theme) => "linear-gradient(to bottom, #640D5F, rgb(199, 113, 238))" ,
           background: (theme) => "linear-gradient(to top , #640D5F, rgb(1, 15, 78))" ,
 
-          transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+          transition: leftDrawerOpened ? theme.transitions.create('width') : 'none',
+          // top :  "80px"
         }}
       >
+        <TopBar
+  sx={{
+    // bgcolor: theme.palette.background.default,
+    // background: (theme) => "linear-gradient(to bottom, #640D5F, rgb(199, 113, 238))" ,
+    position :  "absolute",
+    top :  "0"
+  }}
+/>
         <Toolbar>
           <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
         </Toolbar>
@@ -194,7 +206,7 @@ const MainLayout = () => {
         {/* breadcrumb */}
         {/* <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign /> */}
         <Outlet />
-        <Footer />
+     
       </Main>
       {/* <Customization /> */}
       
@@ -202,6 +214,9 @@ const MainLayout = () => {
     
   
   </>
+    
+  
+  
 
   );
 };

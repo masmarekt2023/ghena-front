@@ -40,7 +40,7 @@ const MainCard = React.forwardRef(
         ref={ref}
         {...others}
         sx={{
-          marginTop:"50px",
+          marginTop:"100px",
           border: border ? '1px solid' : 'none',
           borderColor: 'divider',
           ':hover': {

@@ -83,7 +83,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             paddingBottom: '20px',
 
             [theme.breakpoints.up('md')]: {
-              top: '106px'
+              top: '175px'
             }
           }
         }}
