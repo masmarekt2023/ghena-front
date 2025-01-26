@@ -27,25 +27,43 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
 
   const drawer = (
     <>
+      <PerfectScrollbar
+    component="div"
+    style={{
+      height: 'calc(100vh - 170px)', // ارتفاع مناسب
+       // لتغطية ارتفاع drawer بالكامل
+    }}
+  >
+
+
       <Box sx={{ display: { xs: 'block', md: 'none' }  }}>
         <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
         
         </Box>
       </Box>
       <BrowserView>
-        <PerfectScrollbar
+        {/* <PerfectScrollbar
           component="div"
           style={{
             height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 88px)',
             paddingLeft: '16px',
             paddingRight: '16px'
           }}
+        > */}
+        <Box
+        style={{
+          height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 88px)',
+          paddingLeft: '16px',
+          paddingRight: '16px'
+        }}
         >
+        <MenuList />
+
+        </Box>
          
-          <MenuList />
          
          
-        </PerfectScrollbar>
+        {/* </PerfectScrollbar> */}
       </BrowserView>
       <MobileView>
         <Box sx={{ px: 2 }}>
@@ -56,6 +74,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
           </Stack>
         </Box>
       </MobileView>
+      </PerfectScrollbar>
     </>
   );
 
@@ -66,6 +85,38 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             <Box component="nav" sx={{ flexShrink: { md: 0 }, paddingBottom: '20px',  width: matchUpMd ? drawerWidth : 'auto'
     ,  }} aria-label="mailbox folders">
       <Drawer
+  container={container}
+  variant={matchUpMd ? 'persistent' : 'temporary'}
+  anchor="left"
+  open={drawerOpen}
+  onClose={drawerToggle}
+  sx={{
+    '& .MuiDrawer-paper': {
+      width: drawerWidth,
+      background: (theme) => "linear-gradient(to bottom, #640D5F, rgb(1, 15, 78))",
+      color: 'white !important',
+      borderRight: 'none',
+      paddingTop: '20px',
+      paddingBottom: '50px',
+      height: 'calc(100vh )', // ارتفاع مناسب
+      [theme.breakpoints.up('md')]: {
+        top: '170px',
+      },
+    }
+  }}
+  ModalProps={{ keepMounted: true }}
+>
+  {/* <PerfectScrollbar
+    component="div"
+    style={{
+      height: 'calc(100vh - 170px)', // ارتفاع مناسب
+       // لتغطية ارتفاع drawer بالكامل
+    }}
+  > */}
+    {drawer}
+  {/* </PerfectScrollbar> */}
+</Drawer>
+      {/* <Drawer
         container={container}
         variant={matchUpMd ? 'persistent' : 'temporary'}
         anchor="left"
@@ -74,24 +125,40 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
         sx={{
           '& .MuiDrawer-paper': {
             width: drawerWidth,
-              // background: (theme) =>  "linear-gradient(to top , #640D5F, rgb(199, 113, 238))",
-              background: (theme) =>  "linear-gradient(to bottom, #640D5F, rgb(1, 15, 78))",
-
+            background: (theme) => "linear-gradient(to bottom, #640D5F, rgb(1, 15, 78))",
             color: 'white !important',
             borderRight: 'none',
-            paddingTop : '20px',
-            paddingBottom: '20px',
-
+            paddingTop: '20px',
+            paddingBottom: '50px',
+            height: 'calc(100vh - 170px)', // للتمرير إذا كان المحتوى يتجاوز الارتفاع
+            overflowY: 'auto',
             [theme.breakpoints.up('md')]: {
-              top: '175px'
-            }
+              top: "170px", // إزالة التخصيص العلوي للشاشات الكبيرة
+             
+            },
           }
         }}
+        // sx={{
+        //   '& .MuiDrawer-paper': {
+        //     width: drawerWidth,
+        //       // background: (theme) =>  "linear-gradient(to top , #640D5F, rgb(199, 113, 238))",
+        //       background: (theme) =>  "linear-gradient(to bottom, #640D5F, rgb(1, 15, 78))",
+
+        //     color: 'white !important',
+        //     borderRight: 'none',
+        //     paddingTop : '20px',
+        //     paddingBottom: '50px',
+
+        //     [theme.breakpoints.up('md')]: {
+        //       top: '190px'
+        //     }
+        //   }
+        // }}
         ModalProps={{ keepMounted: true }}
         color="inherit"
       >
         {drawer}
-      </Drawer>
+      </Drawer> */}
     </Box>
   );
 };
