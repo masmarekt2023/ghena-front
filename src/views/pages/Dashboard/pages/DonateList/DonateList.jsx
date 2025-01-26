@@ -193,7 +193,7 @@ export default function DonateList() {
   }, [page]);
 
   return (
-    <Box className={classes.LoginBox} mb={5} mt={5}>
+    <Box className={classes.LoginBox} mb={5} mt={10}>
       {donateList && donateList.length === 0 ? (
         <Box align="center" mt={4} mb={5}>
           <NoDataFound />
