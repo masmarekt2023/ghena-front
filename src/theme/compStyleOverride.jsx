@@ -138,11 +138,13 @@ export default function componentStyleOverrides(theme) {
     },
     MuiListItemText: {
       styleOverrides: {
+        color: "white",
+
         primary: {
           color: "white"
         },
          '&.Mui-selected':{
-          color: "#000"
+          // color: "#000"
 
          }
       }
