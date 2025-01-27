@@ -22,6 +22,7 @@ import {
 } from '@mui/material';  
 import MenuIcon from "@mui/icons-material/Menu";
 import { makeStyles } from '@mui/styles';  
+import TopBar from '../../../layouts/TopBar/TopBar'
 
 import InsertPhotoRoundedIcon from '@mui/icons-material/InsertPhotoRounded';  
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined'; 
@@ -43,6 +44,7 @@ import { isMobile } from 'react-device-detect';
 import './chat.css'
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import zIndex from "@mui/material/styles/zIndex";
 const drawerWidth = 300;
 
 
@@ -305,14 +307,21 @@ const ChatBox = function ({chat, socket, visible, isOnline}) {
     }, []);
 
     return (
-        // Start Chat Content
-        <Box
+        <>
+        <TopBar 
+        style={{
+           zIndex: '100',
+        }}
+        />
+            <Box
         // className=''
             className={classes.main}
             style={{
                 display: visible ? 'flex' : 'none',
+                
                 // paddingBottom: isMobile ? '10px' : '10px',
-                height: '100%'
+                height: '100%',
+                marginTop: '80px',
             }}>
 
             {/* Start User`s avatar */}
@@ -472,6 +481,9 @@ const ChatBox = function ({chat, socket, visible, isOnline}) {
 
             </Box>
         </Box>
+        </>
+        // Start Chat Content
+    
         // End Chat Content
 
     )

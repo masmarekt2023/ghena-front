@@ -247,6 +247,9 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: "1px solid #ddd",
     borderRadius: "10px",
     color: "#fff",
+    "@media(max-width:480px)": {
+      width: "50% !important",
+    },
   },
   parentOfInput: {
     width: "97%",

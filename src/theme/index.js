@@ -376,10 +376,20 @@ export const theme = (customization) => {
     typography: themeTypography(themeOption),
       custom: {
     gradientButton: "linear-gradient(to bottom right, #640D5F, rgb(199, 113, 238))",
+    // gradientButton: "#298a33",
+
     hoverGradientButton: "linear-gradient(to bottom right, #640D5F, #080838)",
     PageBackGround :"linear-gradient(to bottom left, #640D5F, black)",
+    // PageBackGround:"#e7efeb",
+    // PageBackGround:"#f7f2c5",
+
+
     CarBackGround :"linear-gradient(to top right, #640D5F, rgb(1, 15, 78))",
     BoxBackGround :"linear-gradient(to right, rgba(54, 26, 58, 0.533), #640D5F)",
+    // BoxBackGround :"linear-gradient(to top right,#0bab8f,#a8d1d3)",
+    // BoxBackGround :"linear-gradient(to top right,#67554d, #c98a77 , #986b5f ,#f7f2c5)",
+
+
     BoxBackGroundReseve :"linear-gradient(to left, #0008, #640D5F)",
 
 
