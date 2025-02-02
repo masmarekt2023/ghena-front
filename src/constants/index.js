@@ -1,31 +1,31 @@
-export const NetworkContextName = "(BSC) BNB Smart Chain";
-export const ACTIVE_NETWORK = 97;
-export const BNB_NETWORK = 97;
-export const OpenMarketplace = "0x14C9c6A657EE450805848B07A403DD883B862C1f";
-export const NFTTokenContract = "0x0dCD9c3d03f09B9313d2A6851B7C98B532AC7dC9";
-export const deadAddress = "0x0000000000000000000000000000000000000000";
-export const masToken = "0xe6a18c271ac1cd06a82c00245b6469cf99b851c7";
+export const NetworkContextName = import.meta.env.VITE_NETWORK_CONTEXT_NAME;
+export const ACTIVE_NETWORK = import.meta.env.VITE_ACTIVE_NETWORK;
+export const BNB_NETWORK = import.meta.env.VITE_BNB_NETWORK;
+export const OpenMarketplace = import.meta.env.VITE_OPEN_MARKETPLACE;
+export const NFTTokenContract = import.meta.env.VITE_NFT_TOKEN_CONTRACT;
+export const deadAddress = import.meta.env.VITE_DEAD_ADDRESS;
+export const masToken = import.meta.env.VITE_MAS_TOKEN;
 // export const USDTToken = '0xdac17f958d2ee523a2206206994597c13d831ec7'
-export const USDTToken = "0x55d398326f99059fF775485246999027B3197955";
-export const WBTCToken = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599";
-export const FDUSDToken = "0xc5f0f7b66764f6ec8c8dff7ba683102295e16409";
-export const CEO_NAME = "MAS MANGER";
+export const USDTToken = import.meta.env.VITE_USDT_TOKEN;
+export const WBTCToken = import.meta.env.VITE_WBTC_TOKEN;
+export const FDUSDToken = import.meta.env.VITE_FDUSD_TOKEN;
+export const CEO_NAME = import.meta.env.VITE_CEO_NAME;
 export const websiteName =
   window.location.protocol + "//" + window.location.host;
-export const RPC_URL = "https://bscrpc.com/";
+export const RPC_URL = import.meta.env.VITE_RPC_URL;
 
 export const tokensDetails = [
   {
     name: "MAS",
-    chainId: "97",
-    tokenAddress:masToken,
+    chainId: import.meta.env.VITE_ACTIVE_NETWORK,
+    tokenAddress: masToken,
     networkName: "Binance Smart Chain Mainnet",
     databaseKey: "masBalance",
     img: "images/tokens/1.png",
   },
   {
     name: "FDUSD",
-    chainId: "97",
+    chainId: import.meta.env.VITE_ACTIVE_NETWORK,
     tokenAddress: FDUSDToken,
     networkName: "Binance Smart Chain Mainnet",
     databaseKey: "fdusdBalance",
@@ -33,7 +33,7 @@ export const tokensDetails = [
   },
   {
     name: "USDT",
-    chainId: "97",
+    chainId: import.meta.env.VITE_ACTIVE_NETWORK,
     tokenAddress: USDTToken,
     networkName: "Binance Smart Chain Mainnet",
     databaseKey: "usdtBalance",
@@ -45,7 +45,7 @@ export const getCoinkDetails = (name) => {
     case "MAS":
       return {
         name: "MAS",
-        chainId: "97",
+        chainId: import.meta.env.VITE_ACTIVE_NETWORK,
         tokenAddress: masToken,
         networkName: "Binance Smart Chain Mainnet",
         databaseKey: "masBalance",
@@ -54,7 +54,7 @@ export const getCoinkDetails = (name) => {
     case "FDUSD":
       return {
         name: "FDUSD",
-        chainId: "97",
+        chainId: import.meta.env.VITE_ACTIVE_NETWORK,
         tokenAddress: FDUSDToken,
         networkName: "Binance Smart Chain Mainnet",
         databaseKey: "fdusdBalance",
@@ -63,7 +63,7 @@ export const getCoinkDetails = (name) => {
     case "USDT":
       return {
         name: "USDT",
-        chainId: "97",
+        chainId: import.meta.env.VITE_ACTIVE_NETWORK,
         tokenAddress: USDTToken,
         networkName: "Binance Smart Chain Mainnet",
         databaseKey: "usdtBalance",
