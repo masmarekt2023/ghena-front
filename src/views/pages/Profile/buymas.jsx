@@ -18,6 +18,7 @@ import { makeStyles } from '@mui/styles';  // Styling solution for your componen
 
 import BigNumber from 'bignumber.js';  // BigNumber for handling large values in JS (important for handling tokens, etc.)
 import { useWallet } from './WalletContext';  // Custom hook for wallet-related operations
+import { USDTToken } from '../../../constants';
 
 
 
@@ -76,7 +77,7 @@ const ConnectWallet = () => {
   const [coin, setCoin] = useState('MAS');
   const [price, setPrice] = useState(null);
 
-  const usdtContractAddress = '0x55d398326f99059fF775485246999027B3197955';
+  const usdtContractAddress = USDTToken;
   const usdtContractABI = [
   {
     "constant": true,
@@ -165,11 +166,11 @@ const ConnectWallet = () => {
 ]
 
 // Specify the provider URL for the BSC testnet
-  const providerUrl = 'https://cold-nameless-crater.bsc.discover.quiknode.pro/d4669858ede933d6642ec6309ba5089c338ead7c/';
+  const providerUrl = import.meta.env.VITE_PROVIDER_URL;
 // Instantiate Web3 with the provider URL
   const web3 = new Web3(providerUrl);
   const contract = new web3.eth.Contract(usdtContractABI, usdtContractAddress,providerUrl);
-  const adminWalletAddress = '0x12d57224ee2efe9c13b8560372eff6e273ad6d61';
+  const adminWalletAddress = import.meta.env.VITE_ADMIN_WALLET_ADDRESS;
 
    // Function to calculate Mas amount based on the entered USDT amount
    const calculateMasAmount = (usdtAmount) => {
