@@ -1,13 +1,13 @@
-
 //export let baseURL = "https://mas-server-lk9j.onrender.com";
 
 
-export let baseURL = "https://node.masplatform.net";
+export let baseURL = import.meta.env.VITE_BASE_URL;
+
 // export let baseURL = "http://localhost:1865";
 // export let baseURL = "https://mas-server-lk9j.onrender.com";
-export let pageURL = "https://masplatform.net"
+export let pageURL = import.meta.env.VITE_PAGE_URL;
 // export let pageURL = "http://localhost:1865"
-export let socketURL = "wss://node.masplatform.net";
+export let socketURL = import.meta.env.VITE_PAGE_URL;
 
 // export let baseURL = "https://node.masplatform.net";
 // export let pageURL = "https://masplatform.net"
