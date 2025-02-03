@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import axios from "axios";
 import ButtonCircularProgress from "src/component/ButtonCircularProgress";
