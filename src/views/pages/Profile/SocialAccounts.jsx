@@ -8,9 +8,9 @@
 // } from '@mui/material/styles';
 // import { UserContext } from "src/context/User";
 // import ButtonCircularProgress from "src/component/ButtonCircularProgress";
-// import Accordion from '@material-ui/core/Accordion';
-// import AccordionSummary from '@material-ui/core/AccordionSummary';
-// import AccordionDetails from '@material-ui/core/AccordionDetails';
+// import Accordion from '@mui/material/Accordion';
+// import AccordionSummary from '@mui/material/AccordionSummary';
+// import AccordionDetails from '@mui/material/AccordionDetails';
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import FacebookIcon from "@material-ui/icons/Facebook";
 // import TelegramIcon from "@material-ui/icons/Telegram";

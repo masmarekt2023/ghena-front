@@ -12,7 +12,7 @@ import {
   InputAdornment,
   DialogActions,
   Pagination // Corrected import
-} from '@mui/material'; // @mui/material, not @material-ui/core
+} from '@mui/material'; // @mui/material, not @mui/material
 
 import { makeStyles } from '@mui/styles';
 

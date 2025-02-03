@@ -1,16 +1,14 @@
 import React from "react";
-import {
-  Box,
-} from "mui/material"
-import { makeStyles } from '@mui/styles';
+import { Box } from "mui/material";
+import { makeStyles } from "@mui/styles";
 
-import { Carousel } from 'react-responsive-carousel';
+import { Carousel } from "react-responsive-carousel";
 import SuspendCard from "src/component/SuspendCard";
 
 const useStyles = makeStyles(() => ({
   input_fild: {
     backgroundColor: "#ffffff6e",
-    
+
     border: " solid 0.5px #e5e3dd",
     color: "#141518",
     height: "48px",
@@ -95,7 +93,11 @@ export default function Login({ data }) {
   const classes = useStyles();
   return (
     <Box className={classes.LoginBox}>
-      <Carousel centerMode={true} centerSlidePercentage={25} numItemsPerView={4}>
+      <Carousel
+        centerMode={true}
+        centerSlidePercentage={25}
+        numItemsPerView={4}
+      >
         {data &&
           data.map((data, i) => {
             return <SuspendCard data={data} key={i} />;

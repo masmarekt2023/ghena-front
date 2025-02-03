@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, makeStyles, Grid } from '@material-ui/core'
+import { Box, makeStyles, Grid } from '@mui/material'
 import MarketplaceCard from 'src/component/MarketplaceCard'
 import Loader from 'src/component/Loader'
 import NoDataFound from 'src/component/NoDataFound'

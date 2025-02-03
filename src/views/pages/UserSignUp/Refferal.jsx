@@ -7,24 +7,23 @@ import {
   Typography,
   InputAdornment,
   TextField,
-  
-} from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 import { Link } from "react-router-dom";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 const useStyles = makeStyles(() => ({
   input_fild: {
     backgroundColor: "#ffffff6e",
-    
+
     border: " solid 0.5px #e5e3dd",
     color: "#141518",
     height: "48px",
@@ -174,11 +173,7 @@ export default function Login() {
         <Box className={classes.Button} mb={5}>
           <Grid>
             <Box className={classes.ButtonBtn}>
-              <Button
-                variant="contained"
-                size="large"
-                color="secondary"
-              >
+              <Button variant="contained" size="large" color="secondary">
                 Withdraw Your Earnings
               </Button>
               <Typography className={classes.basicBlack}>
@@ -192,7 +187,6 @@ export default function Login() {
                     }}
                     onClick={handleClickOpen2}
                   >
-                    
                     MAS fees
                   </Link>
                   apply.
