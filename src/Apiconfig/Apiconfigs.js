@@ -2,12 +2,15 @@
 //export let baseURL = "https://mas-server-lk9j.onrender.com";
 
 
-export let baseURL = "https://node.masplatform.net";
+// export let baseURL = "https://node.masplatform.net";
 // export let baseURL = "http://localhost:1865";
 // export let baseURL = "https://mas-server-lk9j.onrender.com";
-export let pageURL = "https://masplatform.net"
+// export let pageURL = "https://masplatform.net"
 // export let pageURL = "http://localhost:1865"
-export let socketURL = "wss://node.masplatform.net";
+// export let socketURL = "wss://node.masplatform.net";
+export let baseURL = "https://masplatform-xoep.onrender.com";
+export let pageURL = "https://masplatform-xoep.onrender.com";
+export let socketURL = "wss://masplatform-xoep.onrender.com";
 
 // export let baseURL = "https://node.masplatform.net";
 // export let pageURL = "https://masplatform.net"
